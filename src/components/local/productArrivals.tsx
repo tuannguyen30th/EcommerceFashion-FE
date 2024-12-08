@@ -11,23 +11,21 @@ interface ProductArrivalProps {
   itemsPerPage?: number; 
 }
 
-const ProductArrival: React.FC<ProductArrivalProps> = ({ title, products, showNavigation = false, itemsPerPage = 4 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const ProductArrival: React.FC<ProductArrivalProps> = ({ title, products, showNavigation = false}) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 4;
+  const pageCount = Math.ceil(products.length / itemsPerPage);
 
-  // Cắt mảng sản phẩm để chỉ lấy sản phẩm cần hiển thị dựa trên currentIndex
-  const visibleProducts = products.slice(currentIndex, currentIndex + itemsPerPage);
-
-  const handleNext = () => {
-    if (currentIndex + itemsPerPage < products.length) {
-      setCurrentIndex((prevIndex) => Math.min(prevIndex + itemsPerPage, products.length - itemsPerPage));
-    }
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 0));
   };
 
-  const handlePrev = () => {
-    if (currentIndex - itemsPerPage >= 0) {
-      setCurrentIndex((prevIndex) => Math.max(prevIndex - itemsPerPage, 0));
-    }
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, pageCount - 1));
   };
+
+  // Slice the products array to only show the items for the current page
+  const currentProducts = products.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 
   return (
     <section className="py-12">
@@ -36,13 +34,13 @@ const ProductArrival: React.FC<ProductArrivalProps> = ({ title, products, showNa
           <h2 className="text-2xl font-bold">{title}</h2>
           {showNavigation && (
             <div className="flex space-x-2">
-              {currentIndex > 0 && (
-                <Button variant="outline" size="sm" onClick={handlePrev}>
+              {currentPage > 0 && (
+                <Button variant="outline" size="sm" onClick={handlePrevPage}>
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
               )}
-              {currentIndex + itemsPerPage < products.length && (
-                <Button variant="outline" size="sm" onClick={handleNext}>
+              {currentPage + itemsPerPage < products.length && (
+                <Button variant="outline" size="sm" onClick={handleNextPage}>
                   <ChevronRight className="h-4 w-4" />
                 </Button>
               )}
@@ -50,7 +48,7 @@ const ProductArrival: React.FC<ProductArrivalProps> = ({ title, products, showNa
           )}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {visibleProducts.map((product) => (
+          {currentProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

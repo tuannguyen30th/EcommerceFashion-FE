@@ -5,27 +5,25 @@ import { Card, CardContent } from "@/components/ui/card";
 import { testimonials } from "@/data/testimonial";
 
 const Testimonials: React.FC = () => {
-  const itemsPerPage = 3; 
-  const totalPages = Math.ceil(testimonials.length / itemsPerPage);
-
   const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 3;
+  const pageCount = Math.ceil(testimonials.length / itemsPerPage);
 
-  const visibleProducts = testimonials.slice(
-    currentPage * itemsPerPage,
-    Math.min((currentPage + 1) * itemsPerPage, testimonials.length)
-  );
-
-  const goToPreviousPage = () => {
-    setCurrentPage((prev) => {
-      return prev > 0 ? prev - 1 : 0;
-    });
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 0));
   };
 
-  const goToNextPage = () => {
-    setCurrentPage((prev) => {
-      return prev < totalPages - 1 ? prev + 1 : totalPages - 1;
-    });
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, pageCount - 1));
   };
+
+  // Slice the testimonials array to only show the items for the current page
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentProducts = testimonials.slice(startIndex, endIndex);
+
+  console.log("Current page:", currentPage);
+  console.log("Number of products on this page:", currentProducts.length);
 
   return (
     <section className="py-16 bg-gray-50">
@@ -38,8 +36,8 @@ const Testimonials: React.FC = () => {
               size="icon"
               className="rounded-full"
               aria-label="Previous testimonial"
-              onClick={goToPreviousPage}
-              disabled={currentPage === 0} // Vô hiệu hóa khi ở trang đầu tiên
+              onClick={handlePrevPage}
+              disabled={currentPage === 0}
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -48,15 +46,15 @@ const Testimonials: React.FC = () => {
               size="icon"
               className="rounded-full"
               aria-label="Next testimonial"
-              onClick={goToNextPage}
-              disabled={currentPage === totalPages - 1} 
+              onClick={handleNextPage}
+              disabled={currentPage === pageCount - 1}
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {visibleProducts.map((testimonial) => (
+          {currentProducts.map((testimonial) => (
             <Card key={testimonial.id} className="border-0 shadow-sm">
               <CardContent className="p-6">
                 <div className="flex mb-4">

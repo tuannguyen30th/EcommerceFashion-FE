@@ -78,7 +78,7 @@ const Categories: React.FC = () => {
           {/* Arrow Left */}
           {visibleIndex > 0 && (
             <button
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg z-10"
+              className="absolute left-1 top-1/2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg z-10"
               onClick={handlePrev}
             >
               <ChevronLeft className="h-6 w-6" />
@@ -87,7 +87,7 @@ const Categories: React.FC = () => {
           {/* Arrow Right */}
           {visibleIndex + itemsPerPage < categories.length && (
             <button
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg z-10"
+              className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg z-10"
               onClick={handleNext}
             >
               <ChevronRight className="h-6 w-6" />

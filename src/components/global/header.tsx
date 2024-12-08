@@ -2,6 +2,7 @@
 import { Heart, Search, ShoppingCart, User } from 'lucide-react'
 import { Input } from "@/components/ui/input"
 import { Link } from 'react-router-dom'
+import ProfileButton from '../local/profileDropDown'
 
 export function Header() {
   return (
@@ -38,11 +39,11 @@ export function Header() {
             <Link to="/cart">
               <ShoppingCart className="h-6 w-6" />
             </Link>
-            <Link to="/account">
+            <Link to="/wishList">
               <Heart className="h-6 w-6" />
             </Link>
             <Link to="/account">
-              <User className="h-6 w-6" />
+            <ProfileButton />
             </Link>
           </div>
         </div>

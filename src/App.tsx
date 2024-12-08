@@ -3,6 +3,10 @@ import Layout from '@/components/global/rootLayout';
 import Home from '@/pages/home';
 import  ProductDetail  from '@/pages/productdetail';
 import ProductList from './pages/productList';
+import CartPage from './pages/cart';
+import CheckoutPage from './pages/checkout';
+import WishlistPage from './pages/wishlist';
+import TrackingPage from './pages/tracking';
 
 
 function App() {
@@ -26,7 +30,10 @@ function App() {
       }}
     />} />
         <Route path="/productList" element={<ProductList />} />
-
+        <Route path='/cart' element={<CartPage/>}/>
+        <Route path='/checkout' element={<CheckoutPage/>}/>
+        <Route path='/wishlist' element={<WishlistPage/>}/>
+        <Route path='/tracking' element={<TrackingPage/>}/>
       </Routes>
     </Layout>
   );
