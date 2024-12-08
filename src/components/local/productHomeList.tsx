@@ -10,7 +10,7 @@ import {
 import { ProductCard } from "@/components/local/productCard";
 import { Product } from "@/types/product";
 import { Link } from "react-router-dom";
-
+const PRODUCTS_PER_PAGE = 4; 
 interface ProductListProps {
   title: string;
   products: Product[];
