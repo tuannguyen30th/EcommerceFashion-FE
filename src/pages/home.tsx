@@ -5,7 +5,7 @@ import Categories from '@/components/local/categories';
 import Testimonials from '@/components/local/testimonials';
 import { newArrivals, topSelling } from '@/data/product';
 import ProductArrival from '@/components/local/productArrivals';
-import ProductList from '@/components/local/productList';
+import ProductHomeList from '@/components/local/productHomeList';
 
 const Home: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
         products={newArrivals}
         showNavigation
       />
-      <ProductList
+      <ProductHomeList
         title="TOP SELLING"
         products={topSelling}
       />

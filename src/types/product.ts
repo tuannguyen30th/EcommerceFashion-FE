@@ -1,13 +1,17 @@
 export interface Product {
-    id: string;
-    name: string;
-    price: number;
-    originalPrice?: number;
-    discount?: number;
-    rating: number;
-    maxRating: number;
-    image: string;
-  }
+  id: string;
+  name: string;
+  price: number;
+  originalPrice?: number;
+  discount?: number;
+  rating: number;
+  maxRating: number;
+  image: string;
+  images?: string[];
+  colors?: { name: string; value: string }[];
+  sizes?: string[];
+  description?: string;
+}
   
   export interface Category {
     name: string;
@@ -20,6 +24,22 @@ export interface Product {
     name: string;
     comment: string;
     rating: number;
+  }
+  export interface Review {
+    id: string;
+    name: string;
+    rating: number;
+    comment: string;
+    verified: boolean;
+    date: string;
+  }
+  
+  export interface FilterState {
+    category?: string;
+    priceRange?: [number, number];
+    colors?: string[];
+    sizes?: string[];
+    dressStyle?: string[];
   }
   
   

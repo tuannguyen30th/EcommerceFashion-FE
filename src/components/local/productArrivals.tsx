@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import ProductCard from "@/components/local/productCard";
+import { ProductCard } from "@/components/local/productCard";
 import { Product } from "@/types/product";
 
 interface ProductArrivalProps {
   title: string;
   products: Product[];
   showNavigation?: boolean;
-  itemsPerPage?: number; // Cho phép điều chỉnh số lượng sản phẩm mỗi lần
+  itemsPerPage?: number; 
 }
 
 const ProductArrival: React.FC<ProductArrivalProps> = ({ title, products, showNavigation = false, itemsPerPage = 4 }) => {

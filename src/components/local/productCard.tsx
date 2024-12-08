@@ -1,28 +1,28 @@
 import React from 'react';
-import { Heart, ShoppingCart, Star } from 'lucide-react';
-import { Product } from "@/types/product";
+import { useNavigate } from 'react-router-dom';
+import { Star, Heart, ShoppingCart } from 'lucide-react';
+import type { Product } from "@/types/product";
 
 interface ProductCardProps {
   product: Product;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-    return (
-      <div className="relative group">
-        <div className="aspect-square overflow-hidden rounded-md bg-gray-100 hover:opacity-80 transition-opacity duration-300">
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const navigate = useNavigate();
+
+  const handleProductClick = () => {
+    navigate(`/product/${product.id}`, { state: { product } });
+  };
+
+  return (
+    <div className="relative group cursor-pointer" onClick={handleProductClick}>
+      <button className="group text-left w-full">
+        <div className="aspect-square overflow-hidden rounded-md bg-gray-100">
           <img
             src={product.image}
             alt={product.name}
             className="h-full w-full object-cover transition-transform group-hover:scale-105"
           />
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <button className="p-2 bg-white border rounded-full shadow hover:bg-orange-300 transition">
-              <Heart className="h-6 w-6 text-red-500" />
-            </button>
-            <button className="p-2 ml-2 bg-white border rounded-full shadow hover:bg-orange-300 transition">
-              <ShoppingCart className="h-6 w-6 text-gray-600" />
-            </button>
-          </div>
         </div>
         <div className="mt-2 space-y-1">
           <h3 className="text-sm font-medium line-clamp-1">{product.name}</h3>
@@ -35,7 +35,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 }`}
               />
             ))}
-            <span className="text-xs text-gray-600">{product.rating}/{product.maxRating}</span>
+            <span className="text-xs text-gray-600">{product.rating}/5</span>
           </div>
           <div className="flex items-center space-x-2">
             <span className="text-sm font-bold">${product.price}</span>
@@ -51,10 +51,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             )}
           </div>
         </div>
+      </button>
+      <div className="absolute top-2 right-2 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <button
+          className="p-2 bg-white border rounded-full shadow hover:bg-orange-300 transition"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <Heart className="h-6 w-6 text-red-500" />
+        </button>
+        <button
+          className="p-2 ml-2 bg-white border rounded-full shadow hover:bg-orange-300 transition"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <ShoppingCart className="h-6 w-6 text-gray-600" />
+        </button>
       </div>
-    );
-  };
-  
-
-export default ProductCard;
-
+    </div>
+  );
+};
