@@ -61,7 +61,7 @@ export default function ProfileButton({ className }: Props) {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 bg-teriary text-primary">
+      <DropdownMenuContent className="w-56 bg-white text-primary">
         <DropdownMenuLabel>
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-bold leading-none line-clamp-1">
@@ -81,7 +81,7 @@ export default function ProfileButton({ className }: Props) {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild className="cursor-pointer">
-            <Link to="/orders">
+            <Link to="/tracking">
               <ClipboardList className="w-4 h-4 mr-2 dark:filter dark:invert" />
               <span>Đơn hàng của bạn</span>
             </Link>

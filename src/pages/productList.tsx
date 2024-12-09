@@ -11,28 +11,25 @@ import {
 import type { FilterState } from "../types/product";
 import { Product } from "@/types/product";
 import { Link } from "react-router-dom";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { newArrivals } from "@/data/product";
+import { Pagination } from "@/components/local/pagination";
 
-const PRODUCTS_PER_PAGE = 9; // Define the number of products per page
+const PRODUCTS_PER_PAGE = 9; 
 
 const ProductList: React.FC = () => {
   const [filters, setFilters] = useState<FilterState>({
-    priceRange: [50, 200],
+    priceRange: [0, 200],
   });
 
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1)
+  const totalPages = Math.ceil(newArrivals.length / PRODUCTS_PER_PAGE)
 
-  // Calculate the total number of pages
-  const totalPages = Math.ceil(newArrivals.length / PRODUCTS_PER_PAGE);
+  const currentProducts = newArrivals.slice(
+    (currentPage - 1) * PRODUCTS_PER_PAGE,
+    currentPage * PRODUCTS_PER_PAGE
+  )
+
 
   // State to manage which filter sections are expanded
   const [expandedSections, setExpandedSections] = useState<{
@@ -86,27 +83,6 @@ const ProductList: React.FC = () => {
     });
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
-    }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prev) => prev + 1);
-    }
-  };
-
-  // Slice the products to show only the current page's products
-  const filteredProducts = newArrivals.slice(
-    (currentPage - 1) * PRODUCTS_PER_PAGE,
-    currentPage * PRODUCTS_PER_PAGE
-  );
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -186,7 +162,7 @@ const ProductList: React.FC = () => {
               </div>
               {expandedSections.price && (
                 <Slider
-                  defaultValue={[50, 200]}
+                  defaultValue={[0, 200]}
                   max={500}
                   step={1}
                   className="w-full"
@@ -289,45 +265,22 @@ const ProductList: React.FC = () => {
           {/* Product Cards */}
           <div className="col-span-3">
             <div className="grid grid-cols-3 gap-8">
-              {filteredProducts.map((product) => (
+              {currentProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
-                  onClick={() => handleProductClick(product)}
                 />
               ))}
             </div>
 
             {/* Pagination */}
-            <Pagination className="mt-8 flex justify-center">
-              <PaginationPrevious
-                onClick={handlePreviousPage}
-                disabled={currentPage === 1}
-              >
-                Previous
-              </PaginationPrevious>
-              <PaginationContent>
-                {Array.from({ length: totalPages }, (_, i) => (
-                  <PaginationItem key={i + 1}>
-                    <PaginationLink
-                      onClick={() => handlePageChange(i + 1)}
-                      className={
-                        i + 1 === currentPage ? "bg-black text-white" : ""
-                      }
-                    >
-                      {i + 1}
-                    </PaginationLink>
-                  </PaginationItem>
-                ))}
-              </PaginationContent>
-
-              <PaginationNext
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </PaginationNext>
-            </Pagination>
+            <div className="mt-8 flex justify-center">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          </div>
           </div>
         </div>
       </>

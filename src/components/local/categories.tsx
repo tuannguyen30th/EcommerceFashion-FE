@@ -1,58 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Category } from "@/types/product";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { categories } from '@/data/product';
 
-const categories: Category[] = [
-  {
-    name: "Casual",
-    image: "/placeholder.svg",
-    href: "/category/casual",
-  },
-  {
-    name: "Formal",
-    image: "/placeholder.svg",
-    href: "/category/formal",
-  },
-  {
-    name: "Party",
-    image: "/placeholder.svg",
-    href: "/category/party",
-  },
-  {
-    name: "Gym",
-    image: "/placeholder.svg",
-    href: "/category/gym",
-  },{
-    name: "Gym",
-    image: "/placeholder.svg",
-    href: "/category/gym",
-  },{
-    name: "Gym",
-    image: "/placeholder.svg",
-    href: "/category/gym",
-  },{
-    name: "Gym",
-    image: "/placeholder.svg",
-    href: "/category/gym",
-  },{
-    name: "Gym",
-    image: "/placeholder.svg",
-    href: "/category/gym",
-  },{
-    name: "Gym",
-    image: "/placeholder.svg",
-    href: "/category/gym",
-  },{
-    name: "Gym",
-    image: "/placeholder.svg",
-    href: "/category/gym",
-  },{
-    name: "Gym",
-    image: "/placeholder.svg",
-    href: "/category/gym",
-  },
-];
 
 const Categories: React.FC = () => {
   const [visibleIndex, setVisibleIndex] = useState(0);
@@ -94,7 +44,7 @@ const Categories: React.FC = () => {
             </button>
           )}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 overflow-hidden">
-            {categories.slice(visibleIndex, visibleIndex + itemsPerPage).map((category) => (
+            {categories.slice(visibleIndex, visibleIndex + itemsPerPage).map((category, index) => (
               <Link
                 key={category.name}
                 to={category.href}

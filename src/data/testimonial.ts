@@ -19,37 +19,22 @@ export const testimonials: Testimonial[] = [
     comment: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
     rating: 5,
   }, {
-    id: "3",
+    id: "4",
     name: "James L.",
     comment: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
     rating: 5,
   }, {
-    id: "3",
+    id: "5",
     name: "James L.",
     comment: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
     rating: 5,
   }, {
-    id: "3",
+    id: "6",
     name: "James L.",
     comment: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
     rating: 5,
   }, {
-    id: "3",
-    name: "James L.",
-    comment: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
-    rating: 5,
-  }, {
-    id: "3",
-    name: "James L.",
-    comment: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
-    rating: 5,
-  }, {
-    id: "3",
-    name: "James L.",
-    comment: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
-    rating: 5,
-  }, {
-    id: "3",
+    id: "7",
     name: "James L.",
     comment: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
     rating: 5,

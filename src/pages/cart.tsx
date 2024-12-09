@@ -5,83 +5,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import RelatedProducts from "@/components/local/relatedProducts";
-
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  size: string;
-  color: string;
-  image: string;
-  quantity: number;
-}
+import { CartItem } from "@/types/product";
+import { cartItem } from "@/data/product";
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: "1",
-      name: "Gradient Graphic T-shirt",
-      price: 145,
-      size: "Large",
-      color: "White",
-      image: "/placeholder.svg",
-      quantity: 1,
-    },
-    {
-      id: "2",
-      name: "Checkered Shirt",
-      price: 180,
-      size: "Medium",
-      color: "Red",
-      image: "/placeholder.svg",
-      quantity: 1,
-    },
-    {
-      id: "3",
-      name: "Skinny Fit Jeans",
-      price: 240,
-      size: "Large",
-      color: "Blue",
-      image: "/placeholder.svg",
-      quantity: 1,
-    },
-    {
-      id: "3",
-      name: "Skinny Fit Jeans",
-      price: 240,
-      size: "Large",
-      color: "Blue",
-      image: "/placeholder.svg",
-      quantity: 1,
-    },
-    {
-      id: "3",
-      name: "Skinny Fit Jeans",
-      price: 240,
-      size: "Large",
-      color: "Blue",
-      image: "/placeholder.svg",
-      quantity: 1,
-    },
-    {
-      id: "3",
-      name: "Skinny Fit Jeans",
-      price: 240,
-      size: "Large",
-      color: "Blue",
-      image: "/placeholder.svg",
-      quantity: 1,
-    },
-    {
-      id: "3",
-      name: "Skinny Fit Jeans",
-      price: 240,
-      size: "Large",
-      color: "Blue",
-      image: "/placeholder.svg",
-      quantity: 1,
-    },
-  ]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(cartItem);
 
   const [promoCode, setPromoCode] = useState("");
 
@@ -149,11 +77,11 @@ export default function CartPage() {
                   <div className="mt-1 text-sm text-gray-600">
                     <p>Size: {item.size}</p>
                     <p>Color: {item.color}</p>
-                    <span className="font-bold">Price: ${item.price}</span>
                   </div>
-                    
+
                   <div className="flex items-center justify-between">
-                    <span></span>
+                    <span className="font-bold text-[20px]">Price: ${item.price}</span>
+
                     <div className="flex items-center border rounded-md">
                       <button
                         onClick={() => updateQuantity(item.id, false)}
@@ -215,7 +143,7 @@ export default function CartPage() {
           </div>
         </div>
       </div>
-      <RelatedProducts/>
+      <RelatedProducts />
     </div>
   );
 }

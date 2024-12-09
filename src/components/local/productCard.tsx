@@ -1,17 +1,22 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Star, Heart, ShoppingCart } from 'lucide-react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Star, Heart, ShoppingCart } from "lucide-react";
 import type { Product } from "@/types/product";
+import { Badge } from "../ui/badge";
 
 interface ProductCardProps {
   product: Product;
+  isArrival?: boolean;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  isArrival,
+}) => {
   const navigate = useNavigate();
 
   const handleProductClick = () => {
-    navigate(`/product/${product.id}`, { state: { product } });
+    navigate(`/product/${product.id}`);
   };
 
   return (
@@ -25,13 +30,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           />
         </div>
         <div className="mt-2 space-y-1">
-          <h3 className="text-sm font-medium line-clamp-1">{product.name}</h3>
+          <div className="flex">
+            <h3 className="text-sm font-medium line-clamp-1">{product.name}</h3>
+            {isArrival && <Badge variant="destructive" className="ml-3">New</Badge>}
+          </div>
           <div className="flex items-center space-x-1">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star
                 key={i}
                 className={`h-3 w-3 ${
-                  i < product.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+                  i < product.rating
+                    ? "fill-yellow-400 text-yellow-400"
+                    : "text-gray-300"
                 }`}
               />
             ))}
@@ -45,7 +55,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   ${product.originalPrice}
                 </span>
                 <span className="text-xs text-red-500">
-                  -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                  -
+                  {Math.round(
+                    ((product.originalPrice - product.price) /
+                      product.originalPrice) *
+                      100
+                  )}
+                  %
                 </span>
               </>
             )}
