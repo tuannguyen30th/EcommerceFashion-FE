@@ -1,14 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
-import Layout from '@/components/global/rootLayout'; 
+import Layout from '@/components/global/root-layout'; 
 import Home from '@/pages/home';
-import  ProductDetail  from '@/pages/productdetail';
-import ProductList from './pages/productList';
+import  ProductDetail  from '@/pages/product-detail';
+import ProductList from './pages/product-list';
 import CartPage from './pages/cart';
 import CheckoutPage from './pages/checkout';
 import WishlistPage from './pages/wishlist';
 import TrackingPage from './pages/tracking';
 import ProfilePage from './pages/profile';
 import ShopPage from './pages/shop';
+import LoginPage from './pages/sign-in';
+import SignupPage from './pages/sign-up';
+import OTPPage from './pages/otp';
 
 
 function App() {
@@ -38,6 +41,9 @@ function App() {
         <Route path='/tracking' element={<TrackingPage/>}/>
         <Route path='/profile' element={<ProfilePage/>}/>
         <Route path='/shop' element={<ShopPage/>}/>
+        <Route path='/sign-in' element={<LoginPage/>}/>
+        <Route path='/sign-up' element={<SignupPage/>}/>
+        <Route path='/otp' element={<OTPPage/>}/>
       </Routes>
     </Layout>
   );

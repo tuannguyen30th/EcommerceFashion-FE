@@ -9,7 +9,7 @@ import {
   Plus,
 } from "lucide-react";
 
-import RelatedProducts from "@/components/local/relatedProducts";
+import RelatedProducts from "@/components/local/related-products";
 import { Pagination } from "@/components/local/pagination";
 import { wishList } from "@/data/product";
 import { WishlistItem } from "@/types/product";

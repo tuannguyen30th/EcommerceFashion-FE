@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Hero from '@/components/local/hero';
-import { ProductGrid } from '@/components/local/productGrid';
+import { ProductGrid } from '@/components/local/product-grid';
 import Categories from '@/components/local/categories';
 import Testimonials from '@/components/local/testimonials';
 import { newArrivals, topSelling } from '@/data/product';
-import ProductArrival from '@/components/local/productArrivals';
-import ProductHomeList from '@/components/local/productHomeList';
-import { CategoryGrid } from '@/components/local/categoryGrid';
+import ProductArrival from '@/components/local/product-arrivals';
+import ProductHomeList from '@/components/local/product-home-list';
+import { CategoryGrid } from '@/components/local/category-grid';
 import { Pagination } from '@/components/local/pagination';
 
 const Home: React.FC = () => {

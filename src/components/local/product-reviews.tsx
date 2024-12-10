@@ -64,14 +64,14 @@ const ProductReviews: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-600 mb-2">{review.comment}</p>
-            <div className="flex mt-3 flex-wrap gap-4">
+            <div className="flex mt-3 flex-wrap gap-2">
                     {review.photos.map((photo, index) => (
                       <Dialog key={index}>
                         <DialogTrigger>
                           <img
                             src={photo}
                             alt={`Review photo ${index + 1}`}
-                            className="rounded-lg object-cover"
+                            className="rounded-[2px] object-cover"
                             width={80}
                             height={80}
                           />

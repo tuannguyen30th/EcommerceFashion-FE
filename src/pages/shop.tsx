@@ -1,8 +1,8 @@
 
 import { useState } from 'react'
-import { ShopInfo } from "@/components/local/shopInfor"
-import { ShopReviews } from "@/components/local/shopReviews"
-import { ProductGrid } from "@/components/local/productGrid"
+import { ShopInfo } from "@/components/local/shop-infor"
+import { ShopReviews } from "@/components/local/shop-reviews"
+import { ProductGrid } from "@/components/local/product-grid"
 import { Pagination } from "@/components/local/pagination"
 import type { Product } from "@/types/product"
 import { reviews, shopInfo } from '@/data/product'

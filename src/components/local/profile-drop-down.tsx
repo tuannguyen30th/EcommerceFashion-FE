@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ClipboardList, LogIn, LogOut, User, UserIcon, UserPen } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '@/context/AuthContext'; // Adjust the path to your `AuthContext`
+import { useAuth } from '@/context/auth-context'; // Adjust the path to your `AuthContext`
 
 type Props = {
   className?: string;
@@ -36,13 +36,13 @@ export default function ProfileButton({ className }: Props) {
         <DropdownMenuContent className="w-56 bg-white text-primary">
           <DropdownMenuGroup>
             <DropdownMenuItem asChild className="cursor-pointer">
-              <Link to="/auth/sign-in" onClick={login}>
+              <Link to="/sign-in" >
                 <LogIn className="w-4 h-4 mr-2" />
                 <span>Đăng nhập</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild className="cursor-pointer">
-              <Link to="/auth/sign-up">
+              <Link to="/sign-up">
                 <UserPen className="w-4 h-4 mr-2" />
                 <span>Đăng ký</span>
               </Link>

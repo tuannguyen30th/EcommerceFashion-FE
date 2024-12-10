@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Star, Minus, Plus, Check } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ProductReviews from "@/components/local/productReviews";
-import RelatedProducts from "@/components/local/relatedProducts";
-import { Breadcrumb } from "@/components/local/breadCrumb";
+import ProductReviews from "@/components/local/product-reviews";
+import RelatedProducts from "@/components/local/related-products";
+import { Breadcrumb } from "@/components/local/bread-crumb";
 
 interface Product {
   name: string;
@@ -15,6 +15,7 @@ interface Product {
   colors: { name: string; value: string }[];
   sizes: string[];
   images: string[];
+  stock: number;
 }
 
 interface ProductDetailProps {
@@ -43,25 +44,33 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
         {/* Product Images */}
         <div className="flex gap-4">
-      {/* Thumbnails */}
-      <div className="flex flex-col gap-2">
-        {product.images.map((image, i) => (
-          <div
-            key={i}
-            className="w-16 h-16 rounded-md overflow-hidden cursor-pointer hover:ring-2 hover:ring-black"
-            onMouseEnter={() => setMainImage(image)}
-            onMouseLeave={() => setMainImage(product.images[0])}
-          >
-            <img src={image} alt={`Thumbnail ${i + 1}`} className="w-full h-full object-cover" />
+          {/* Thumbnails */}
+          <div className="flex flex-col gap-2">
+            {product.images.map((image, i) => (
+              <div
+                key={i}
+                className="w-16 h-16 rounded-md overflow-hidden cursor-pointer hover:ring-2 hover:ring-black"
+                onMouseEnter={() => setMainImage(image)}
+                onMouseLeave={() => setMainImage(product.images[0])}
+              >
+                <img
+                  src={image}
+                  alt={`Thumbnail ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* Main Image */}
-      <div className="flex-1 aspect-square rounded-lg overflow-hidden bg-gray-200">
-        <img src={mainImage} alt="Main Product" className="w-full h-full object-cover" />
-      </div>
-    </div>
+          {/* Main Image */}
+          <div className="flex-1 aspect-square rounded-lg overflow-hidden bg-gray-200">
+            <img
+              src={mainImage}
+              alt="Main Product"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
 
         {/* Product Info */}
         <div className="space-y-6">
@@ -151,6 +160,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
             </div>
 
             <div className="flex items-center space-x-4">
+              <span className="text-gray-600">Quantity</span>
+
               <div className="flex items-center border rounded-md">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -166,8 +177,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
-              <Button className="flex-1">Add to Cart</Button>
+              <span className="flex-1 text-gray-600">1001 products available</span>
             </div>
+            <Button className="w-1/2">Add to Cart</Button>
           </div>
         </div>
       </div>

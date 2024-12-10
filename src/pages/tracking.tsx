@@ -1,6 +1,6 @@
 'use client'
 
-import RelatedProducts from "@/components/local/relatedProducts"
+import RelatedProducts from "@/components/local/related-products"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { orders } from "@/data/product"

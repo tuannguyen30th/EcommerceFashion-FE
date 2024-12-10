@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "@/components/local/productCard";
+import { ProductCard } from "@/components/local/product-card";
 import { Product } from "@/types/product";
 
 interface ProductArrivalProps {

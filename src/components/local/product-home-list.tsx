@@ -7,7 +7,7 @@ import {
   PaginationLink,
   PaginationNext,
 } from "@/components/ui/pagination"; // Import các thành phần của Pagination
-import { ProductCard } from "@/components/local/productCard";
+import { ProductCard } from "@/components/local/product-card";
 import { Product } from "@/types/product";
 import { Link } from "react-router-dom";
 const PRODUCTS_PER_PAGE = 4; 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ProductCard } from '@/components/local/productCard';
+import { ProductCard } from '@/components/local/product-card';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import { relatedProduct } from '@/data/product';

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "../components/ui/button";
-import { ProductCard } from "@/components/local/productCard";
+import { ProductCard } from "@/components/local/product-card";
 import {
   ArrowLeft,
   ChevronDown,

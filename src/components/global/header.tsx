@@ -1,7 +1,7 @@
 import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Link, Links } from "react-router-dom";
-import ProfileButton from "../local/profileDropDown";
+import ProfileButton from "../local/profile-drop-down";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,7 +11,7 @@ import {
   NavigationMenuTrigger,
 } from "../ui/navigation-menu";
 import { ScrollArea } from "../ui/scroll-area";
-import { NavigationShop } from "../local/navigationShop";
+import { NavigationShop } from "../local/navigation-shop";
 
 export function Header() {
  

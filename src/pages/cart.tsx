@@ -4,10 +4,10 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import RelatedProducts from "@/components/local/relatedProducts";
+import RelatedProducts from "@/components/local/related-products";
 import { CartItem } from "@/types/product";
 import { cartItem } from "@/data/product";
-import { VoucherDialog } from "@/components/local/voucherDialog";
+import { VoucherDialog } from "@/components/local/voucher-dialog";
 
 export default function CartPage() {
 
