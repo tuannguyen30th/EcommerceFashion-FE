@@ -22,7 +22,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div className="relative group cursor-pointer" onClick={handleProductClick}>
       <button className="group text-left w-full">
-        <div className="aspect-square overflow-hidden rounded-md bg-gray-100">
+        <div className="aspect-square overflow-hidden rounded-[4px] bg-gray-100">
           <img
             src={product.image}
             alt={product.name}

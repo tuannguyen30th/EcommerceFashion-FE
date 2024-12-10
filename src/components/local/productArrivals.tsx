@@ -13,7 +13,7 @@ interface ProductArrivalProps {
 
 const ProductArrival: React.FC<ProductArrivalProps> = ({ title, products, showNavigation = false}) => {
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 4;
+  const itemsPerPage = 5;
   const pageCount = Math.ceil(products.length / itemsPerPage);
 
   const handlePrevPage = () => {
@@ -47,7 +47,7 @@ const ProductArrival: React.FC<ProductArrivalProps> = ({ title, products, showNa
             </div>
           )}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
           {currentProducts.map((product) => (
             <ProductCard key={product.id} product={product} isArrival={true}/>
           ))}

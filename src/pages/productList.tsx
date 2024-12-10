@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { newArrivals } from "@/data/product";
 import { Pagination } from "@/components/local/pagination";
 
-const PRODUCTS_PER_PAGE = 9; 
+const PRODUCTS_PER_PAGE = 20; 
 
 const ProductList: React.FC = () => {
   const [filters, setFilters] = useState<FilterState>({
@@ -264,7 +264,7 @@ const ProductList: React.FC = () => {
 
           {/* Product Cards */}
           <div className="col-span-3">
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-5 gap-2">
               {currentProducts.map((product) => (
                 <ProductCard
                   key={product.id}

@@ -11,7 +11,7 @@ import { Pagination } from '@/components/local/pagination';
 
 const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)
-  const productsPerPage = 4;
+  const productsPerPage = 16;
   const totalPages = Math.ceil(topSelling.length / productsPerPage)
 
   const currentProducts = topSelling.slice(

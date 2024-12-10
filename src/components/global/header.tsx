@@ -16,7 +16,7 @@ import { NavigationShop } from "../local/navigationShop";
 export function Header() {
  
   return (
-    <header className="border-b">
+    <header className="border-b sticky top-0 z-50 bg-white">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-2xl font-bold">

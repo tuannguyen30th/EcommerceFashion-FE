@@ -7,8 +7,10 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import RelatedProducts from "@/components/local/relatedProducts";
 import { CartItem } from "@/types/product";
 import { cartItem } from "@/data/product";
+import { VoucherDialog } from "@/components/local/voucherDialog";
 
 export default function CartPage() {
+
   const [cartItems, setCartItems] = useState<CartItem[]>(cartItem);
 
   const [promoCode, setPromoCode] = useState("");
@@ -80,7 +82,9 @@ export default function CartPage() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-[20px]">Price: ${item.price}</span>
+                    <span className="font-bold text-[20px]">
+                      Price: ${item.price}
+                    </span>
 
                     <div className="flex items-center border rounded-md">
                       <button
@@ -115,8 +119,15 @@ export default function CartPage() {
                 <span className="font-medium">${subtotal}</span>
               </div>
               <div className="flex justify-between text-red-500">
-                <span>Discount (-20%)</span>
-                <span>-${discount}</span>
+                <span>
+                  Discount ({Number(promoCode) === 0 ? "No discount" : `-${promoCode}%`}
+                  )
+                </span>
+                <span>
+                  {Number(promoCode) === 0
+                    ? "$0.00"
+                    : `-$${(subtotal * (Number(promoCode) / 100)).toFixed(2)}`}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Delivery Fee</span>
@@ -133,8 +144,12 @@ export default function CartPage() {
                 placeholder="Add promo code"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
+                readOnly
               />
-              <Button variant="outline">Apply</Button>
+              <VoucherDialog
+                promoCode={promoCode}
+                setPromoCode={setPromoCode}
+              />
             </div>
 
             <Button className="w-full mt-4" asChild>
