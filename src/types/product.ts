@@ -104,3 +104,12 @@ export interface WishlistItem{
   image: string;
   quantity: number;
 }
+
+export interface ShopInfoProps {
+  name: string
+  rating: number
+  totalReviews: number
+  followers: number
+  description: string
+  logo: string
+}

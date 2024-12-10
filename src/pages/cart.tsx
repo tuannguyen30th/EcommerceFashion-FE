@@ -14,6 +14,7 @@ export default function CartPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>(cartItem);
 
   const [promoCode, setPromoCode] = useState("");
+  const [discountValue, setDiscountValue] = useState(0);
 
   const updateQuantity = (id: string, increment: boolean) => {
     setCartItems((items) =>
@@ -38,9 +39,9 @@ export default function CartPage() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const discount = subtotal * 0.2; // 20% discount
+  const discount = subtotal * (Number(discountValue) / 100); 
   const deliveryFee = 15;
-  const total = subtotal - discount + deliveryFee;
+  const total = subtotal - discount - deliveryFee;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -120,13 +121,13 @@ export default function CartPage() {
               </div>
               <div className="flex justify-between text-red-500">
                 <span>
-                  Discount ({Number(promoCode) === 0 ? "No discount" : `-${promoCode}%`}
+                  Discount ({Number(discountValue) === 0 ? "No discount" : `-${discountValue}%`}
                   )
                 </span>
                 <span>
-                  {Number(promoCode) === 0
+                  {Number(discountValue) === 0
                     ? "$0.00"
-                    : `-$${(subtotal * (Number(promoCode) / 100)).toFixed(2)}`}
+                    : `-$${(subtotal * (Number(discountValue) / 100)).toFixed(2)}`}
                 </span>
               </div>
               <div className="flex justify-between">
@@ -149,6 +150,7 @@ export default function CartPage() {
               <VoucherDialog
                 promoCode={promoCode}
                 setPromoCode={setPromoCode}
+                setDiscount={setDiscountValue}
               />
             </div>
 

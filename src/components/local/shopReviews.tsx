@@ -47,7 +47,7 @@ export function ShopReviews({ reviews }: ShopReviewsProps) {
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
-      <h2 className="text-xl font-bold mb-4 flex">Customer Reviews <StarIcon className="ml-3"/></h2>
+      <h2 className="text-xl font-bold mb-4 flex border-b border-black p-3">Customer Reviews <StarIcon className="ml-3"/></h2>
       <div className="relative">
         <div className="flex justify-between my-4">
           <Button
@@ -91,14 +91,14 @@ export function ShopReviews({ reviews }: ShopReviewsProps) {
                     </span>
                   </div>
                   <p className="text-gray-700">{review.comment}</p>
-                  <div className="flex mt-3 flex-wrap gap-4">
+                  <div className="flex mt-3 flex-wrap gap-2">
                     {review.photos.map((photo, index) => (
                       <Dialog key={index}>
                         <DialogTrigger>
                           <img
                             src={photo}
                             alt={`Review photo ${index + 1}`}
-                            className="rounded-lg object-cover"
+                            className="rounded-[3px] object-cover "
                             width={80}
                             height={80}
                           />

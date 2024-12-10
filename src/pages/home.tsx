@@ -19,7 +19,7 @@ const Home: React.FC = () => {
     currentPage * productsPerPage
   )
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen text-center">
       <Hero />
       <CategoryGrid/>
       <ProductArrival
