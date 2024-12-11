@@ -265,6 +265,7 @@ export default function CheckoutPage() {
               <div className="flex items-center space-x-4 border rounded-lg p-4">
                 <RadioGroupItem value="card" id="card" />
                 <Label htmlFor="card" className="flex items-center gap-2">
+                
                   <img
                     src="/placeholder.svg"
                     alt="VNPAY"
