@@ -46,7 +46,7 @@ export function CategoryGrid() {
           {visibleCategories.map((category, index) => (
             <Link
               key={index}
-              to={category.href}
+              to={"/cate"}
               className="group flex flex-col items-center text-center"
             >
               <div className="relative w-20 h-20 mb-2 rounded-full overflow-hidden bg-white p-4 shadow-sm group-hover:shadow-md transition-shadow">

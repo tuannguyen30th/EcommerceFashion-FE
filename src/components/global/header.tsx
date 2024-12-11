@@ -11,7 +11,7 @@ import {
   NavigationMenuTrigger,
 } from "../ui/navigation-menu";
 import { ScrollArea } from "../ui/scroll-area";
-import { NavigationShop } from "../local/navigation-shop";
+import { NavigationShop } from "../local/shop-navigation";
 
 export function Header() {
  
