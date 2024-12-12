@@ -3,10 +3,6 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { categories } from '@/data/product';
 
-
-
-
-
 export function CategoryGrid() {
   const [currentPage, setCurrentPage] = useState(0);
   const categoriesPerPage = 20;

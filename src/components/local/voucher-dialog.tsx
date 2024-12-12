@@ -8,83 +8,96 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Tag, Percent, Truck } from "lucide-react";
-import { ScrollArea } from "../ui/scroll-area";
-import { Badge } from "@/components/ui/badge";
+import { Search, Tag } from 'lucide-react';
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { VoucherCard } from "@/components/local/voucher-card";
 
 interface Voucher {
-  id: string;
+  id: string
   code: string;
-  description: string;
   discount: number;
-  icon: "tag" | "percent" | "truck";
+  minSpend: number;
+  validityDays: number;
+  usageLimit?: number;
 }
 
 const vouchers: Voucher[] = [
-  {id: "1", code: "SUMMER10", description: "10% off summer collection", discount: 10, icon: "percent" },
-  {id: "2", code: "FREESHIP", description: "Free shipping on orders over $50", discount: 15, icon: "truck" },
-  {id: "3", code: "NEWCUST20", description: "20% off for new customers", discount: 20, icon: "tag" },
+  {
+    id: "1",
+    code: "Freeship 15.12",
+    discount: 15,
+    minSpend: 0,
+    validityDays: 2,
+    usageLimit: 5,
+  },
+  {
+    id: "2",
+    code: "SUMMER50",
+    discount: 20,
+    minSpend: 200,
+    validityDays: 7,
+  },
+  {
+    id: "3",
+    code: "NEWUSER",
+    discount: 30,
+    minSpend: 10000,
+    validityDays: 30,
+    usageLimit: 1,
+  },
 ];
 
 interface VoucherDialogProps {
-  promoCode: string;
+  id: string;
   setPromoCode: (code: string) => void;
   setDiscount: (discount: number) => void;
 }
 
-export function VoucherDialog({ promoCode, setPromoCode, setDiscount }: VoucherDialogProps) {
+export function VoucherDialog({
+  id,
+  setPromoCode,
+  setDiscount
+}: VoucherDialogProps) {
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleVoucherSelect = (code: string, discount: number) => {
     setPromoCode(code);
-    setDiscount(discount);
+    setDiscount(discount)
     setOpen(false);
   };
 
   const filteredVouchers = vouchers.filter((voucher) =>
-    `${voucher.code} ${voucher.description}`.toLowerCase().includes(searchTerm.toLowerCase())
+    `${voucher.code} ${voucher.discount} ${voucher.minSpend}`
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
   );
-
-  const getIcon = (icon: Voucher["icon"]) => {
-    const iconMap = {
-      tag: <Tag className="h-6 w-6" />,
-      percent: <Percent className="h-6 w-6" />,
-      truck: <Truck className="h-6 w-6" />,
-    };
-    return iconMap[icon];
-  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Apply Voucher</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold mb-4 flex">
-            Available Vouchers <Tag className="h-6 w-6 mt-2 ml-3" />
+          <DialogTitle className="text-2xl font-bold mb-4 flex items-center">
+            Available Vouchers <Tag className="h-6 w-6 ml-3" />
           </DialogTitle>
         </DialogHeader>
-        <ScrollArea className="max-h-[300px]">
-          {filteredVouchers.map((voucher) => (
-            <div
-              key={voucher.id}
-              className="flex items-center gap-4 p-4 border rounded-lg cursor-pointer hover:border-primary transition my-3"
-              onClick={() => handleVoucherSelect(voucher.code, voucher.discount)}
-            >
-              <div className="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full text-primary">
-                {getIcon(voucher.icon)}
-              </div>
-              <div className="flex-grow">
-                <h3 className="font-bold">{voucher.code}</h3>
-                <p className="text-sm text-gray-500">{voucher.description}</p>
-              </div>
-              <Badge className="bg-green-600 px-2 py-1">{voucher.discount}%</Badge>
-            </div>
-          ))}
+       
+        <ScrollArea className="max-h-[400px] pr-4">
+          <div className="space-y-4">
+            {filteredVouchers.map((voucher) => (
+              <VoucherCard
+                key={voucher.code}
+                {...voucher}
+                onUse={() => handleVoucherSelect(voucher.code, voucher.discount)}
+              />
+            ))}
+          </div>
         </ScrollArea>
       </DialogContent>
     </Dialog>
   );
 }
+

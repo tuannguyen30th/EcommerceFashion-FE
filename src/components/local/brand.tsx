@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { categories } from '@/data/product';
 
 
-const Categories: React.FC = () => {
+const Brands: React.FC = () => {
   const [visibleIndex, setVisibleIndex] = useState(0);
   const itemsPerPage = 4;
 
@@ -47,7 +47,7 @@ const Categories: React.FC = () => {
             {categories.slice(visibleIndex, visibleIndex + itemsPerPage).map((category, index) => (
               <Link
                 key={category.name}
-                to={category.href}
+                to="/brand"
                 className="relative overflow-hidden rounded-lg aspect-[4/3]"
               >
                 <img
@@ -68,4 +68,4 @@ const Categories: React.FC = () => {
   );
 };
 
-export default Categories;
+export default Brands;

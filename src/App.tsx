@@ -14,6 +14,7 @@ import SignupPage from './pages/sign-up';
 import OTPPage from './pages/otp';
 import { CategoryNavigation } from './components/local/category-navigation';
 import CategoryPage from './pages/categories';
+import UrbanStyleBrandPage from './pages/brand';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route path='/sign-up' element={<SignupPage/>}/>
         <Route path='/otp' element={<OTPPage/>}/>
         <Route path='/cate' element={<CategoryPage/>}/>
+        <Route path='/brand' element={<UrbanStyleBrandPage/>}/>
       </Routes>
     </Layout>
   );

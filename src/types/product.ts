@@ -113,3 +113,16 @@ export interface ShopInfoProps {
   description: string
   logo: string
 }
+
+export interface BrandHeroProps {
+  name: string
+  description: string
+  logo: string
+  coverImage: string
+}
+export interface BrandCategoryCardProps {
+  name: string
+  description: string
+  image: string
+  href: string
+}

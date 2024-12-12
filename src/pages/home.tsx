@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import Hero from '@/components/local/hero';
 import { ProductGrid } from '@/components/local/product-grid';
-import Categories from '@/components/local/categories';
 import Testimonials from '@/components/local/testimonials';
 import { newArrivals, topSelling } from '@/data/product';
 import ProductArrival from '@/components/local/product-arrivals';
-import ProductHomeList from '@/components/local/product-home-list';
 import { CategoryGrid } from '@/components/local/category-grid';
 import { Pagination } from '@/components/local/pagination';
+import Brands from '@/components/local/brand';
 
 const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -19,7 +18,7 @@ const Home: React.FC = () => {
     currentPage * productsPerPage
   )
   return (
-    <div className="min-h-screen text-center">
+    <div className="min-h-screen">
       <Hero />
       <CategoryGrid/>
       <ProductArrival
@@ -39,7 +38,7 @@ const Home: React.FC = () => {
           </div>
       </div>
        
-      <Categories />
+      <Brands />
       <Testimonials />
     </div>
   );

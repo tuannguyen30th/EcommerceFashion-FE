@@ -234,7 +234,7 @@ export function CategoryNavigation() {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <NavigationMenuLink asChild>
-                      <div className="w-[400px] rounded-lg border bg-card overflow-hidden">
+                      <div className="w-[350px] rounded-lg border bg-card overflow-hidden">
                         <div className="grid grid-cols-1 md:grid-cols-2">
                           <div className="relative aspect-square md:aspect-auto">
                             <img
