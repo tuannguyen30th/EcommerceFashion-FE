@@ -1,5 +1,6 @@
-import { Header } from "@/components/global/header"
+import { Header } from "@/components/global/header";
 import { Footer } from "@/components/global/footer";
+import { ScrollToTop } from "../local/scroll-to-top";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -8,9 +9,11 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body>
-          <Header />
-          <main className="pb-24">{children}</main>
-          <Footer />
+        <Header />
+        <main className="pb-24">{children}</main>
+
+        <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );

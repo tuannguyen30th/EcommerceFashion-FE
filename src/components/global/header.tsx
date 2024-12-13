@@ -32,9 +32,9 @@ export function Header() {
             <Link to="/new-arrivals" className="text-sm font-medium">
               New Arrivals
             </Link>
-            <Link to="/brands" className="text-sm font-medium">
+            {/* <Link to="/brands" className="text-sm font-medium">
               Brands
-            </Link>
+            </Link> */}
           </nav>
 
           <div className="flex items-center space-x-4">

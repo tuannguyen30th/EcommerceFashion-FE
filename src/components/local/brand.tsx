@@ -23,7 +23,7 @@ export const Brands: React.FC = () => {
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8">BROWSE BY DRESS STYLE</h2>
+        <h2 className="text-3xl font-bold mb-8">BRANDS</h2>
         <div className="relative">
           {/* Arrow Left */}
           {visibleIndex > 0 && (
