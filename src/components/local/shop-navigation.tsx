@@ -83,16 +83,16 @@ export const NavigationShop: React.FC = () => {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-            <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ScrollArea className=" h-[300px] rounded-md border p-4">
-              <div className="space-y-4 p-4 bg-gray-100 rounded-lg w-[500px]">
+            <ScrollArea className=" h-[300px] rounded-[3px] border p-4">
+              <div className="space-y-4 p-4 bg-gray-100 rounded-[3px] w-[500px]">
                 {shops.map((shop) => (
                   <Link to={"/shop"}>
                     <NavigationMenuLink>
                       <div
                         key={shop.id}
-                        className="flex items-center space-x-4 p-4 bg-white shadow rounded-lg mb-5"
+                        className="flex items-center space-x-4 p-4 bg-white shadow rounded-[3px] mb-5 hover:shadow-2xl transition-shadow"
                       >
                         <img
                           src={shop.logo}

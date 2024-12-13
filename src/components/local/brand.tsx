@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { categories } from '@/data/product';
 
 
-const Brands: React.FC = () => {
+export const Brands: React.FC = () => {
   const [visibleIndex, setVisibleIndex] = useState(0);
   const itemsPerPage = 4;
 
@@ -68,4 +68,3 @@ const Brands: React.FC = () => {
   );
 };
 
-export default Brands;

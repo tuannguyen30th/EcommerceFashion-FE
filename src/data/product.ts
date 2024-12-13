@@ -797,7 +797,7 @@ export const shopInfo: ShopInfo = {
   totalReviews: 1234,
   followers: 5678,
   description: "Your one-stop shop for the latest fashion trends and timeless classics.",
-  logo: "/placeholder.svg"
+  logo: "https://scontent.fsgn24-1.fna.fbcdn.net/v/t39.30808-6/468931911_1229461948310186_5461644632677068263_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=KhqbuGrpcVEQ7kNvgGXxk2T&_nc_zt=23&_nc_ht=scontent.fsgn24-1.fna&_nc_gid=AS65yfTyE188njcON34kP9x&oh=00_AYCfohZcleJNvsoNreyVE1fRNY5v38Cv3FaHmm2WRsr6ig&oe=67617FE3"
 }
 
 export const wishList: WishlistItem[] = [

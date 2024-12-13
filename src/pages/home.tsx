@@ -6,7 +6,7 @@ import { newArrivals, topSelling } from '@/data/product';
 import ProductArrival from '@/components/local/product-arrivals';
 import { CategoryGrid } from '@/components/local/category-grid';
 import { Pagination } from '@/components/local/pagination';
-import Brands from '@/components/local/brand';
+import { Brands } from '@/components/local/brand';
 
 const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)

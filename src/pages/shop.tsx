@@ -33,6 +33,9 @@ export default function ShopPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <ShopInfo {...shopInfo} />
+      <div className='my-5 text-3xl font-bold'>
+        <span>Shop's products</span>
+      </div>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           <ProductGrid products={currentProducts} />
