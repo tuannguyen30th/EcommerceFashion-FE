@@ -38,12 +38,12 @@ export function CategoryGrid() {
             )}
           </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10">
           {visibleCategories.map((category, index) => (
             <Link
               key={index}
               to={"/cate"}
-              className="group flex flex-col items-center text-center"
+              className="group flex flex-col items-center text-center border border-gray-100 h-[150px]"
             >
               <div className="relative w-20 h-20 mb-2 rounded-full overflow-hidden bg-white p-4 shadow-sm group-hover:shadow-md transition-shadow">
                 <img
@@ -52,7 +52,7 @@ export function CategoryGrid() {
                   className="object-contain p-2"
                 />
               </div>
-              <span className="text-sm text-gray-700 group-hover:text-gray-900 line-clamp-2">
+              <span className="text-sm text-gray-700 group-hover:text-gray-900 overflow-hidden text-ellipsis whitespace-nowrap w-[100px]">
                 {category.name}
               </span>
             </Link>

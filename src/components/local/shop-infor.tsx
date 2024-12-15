@@ -10,11 +10,17 @@ export function ShopInfo({
   logo,
 }: ShopInfoProps) {
   return (
-    <div className="flex items-start space-x-6 p-6 bg-white rounded-lg shadow-lg">
-      <div className="w-[100px] h-[100px] rounded-full border border-black overflow-hidden">
+    <div
+      className="flex items-start space-x-6 p-6 bg-white rounded-lg shadow-lg"
+      style={{
+        boxShadow:
+          "0px 4px 6px rgba(0, 0, 0, 0.1), 0px -2px 4px rgba(0, 0, 0, 0.1), 2px 0px 4px rgba(0, 0, 0, 0.1), -2px 0px 4px rgba(0, 0, 0, 0.1)",
+      }}
+    >
+      <div className="w-[100px] h-[100px] rounded-full border overflow-hidden">
         <img src={logo} alt={name} className="object-cover w-full h-full" />
       </div>
-    
+
       <div className="flex-1">
         <h1 className="text-2xl font-bold">{name}</h1>
         <div className="flex items-center mt-2">
@@ -35,7 +41,7 @@ export function ShopInfo({
           </span>
         </div>
         <p className="mt-2 text-sm text-gray-600">
-          {followers.toLocaleString()} followers
+          {followers?.toLocaleString()} followers
         </p>
         <p className="mt-4 text-gray-700">{description}</p>
       </div>

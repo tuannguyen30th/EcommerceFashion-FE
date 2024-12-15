@@ -6,6 +6,7 @@ import { ProductGrid } from "@/components/local/product-grid"
 import { Pagination } from "@/components/local/pagination"
 import type { Product } from "@/types/product"
 import { reviews, shopInfo } from '@/data/product'
+import CategoryScrollArea from '@/components/local/category-scrollArea'
 
 // Mock data - replace with actual data fetching in a real application
 
@@ -32,6 +33,7 @@ export default function ShopPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <CategoryScrollArea/>
       <ShopInfo {...shopInfo} />
       <div className='my-5 text-3xl font-bold'>
         <span>Shop's products</span>

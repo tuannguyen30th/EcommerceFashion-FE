@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductReviews from "@/components/local/product-reviews";
 import RelatedProducts from "@/components/local/related-products";
 import { Breadcrumb } from "@/components/local/bread-crumb";
+import CategoryScrollArea from "@/components/local/category-scrollArea";
 
 interface Product {
   name: string;
@@ -32,6 +33,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <CategoryScrollArea/>
       <Breadcrumb
         items={[
           { label: "Home", href: "/" },

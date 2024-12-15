@@ -13,6 +13,7 @@ import RelatedProducts from "@/components/local/related-products";
 import { Pagination } from "@/components/local/pagination";
 import { wishList } from "@/data/product";
 import { WishlistItem } from "@/types/product";
+import CategoryScrollArea from "@/components/local/category-scrollArea";
 
 
 const itemsPerPage = 3;
@@ -53,6 +54,7 @@ export default function WishlistPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <CategoryScrollArea/>
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-8">
         <Link to="/">Home</Link>
         <span>/</span>

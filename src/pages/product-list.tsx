@@ -13,6 +13,7 @@ import { Product } from "@/types/product";
 import { Link } from "react-router-dom";
 import { newArrivals } from "@/data/product";
 import { Pagination } from "@/components/local/pagination";
+import CategoryScrollArea from "@/components/local/category-scrollArea";
 
 const PRODUCTS_PER_PAGE = 20; 
 
@@ -86,12 +87,13 @@ const ProductList: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <CategoryScrollArea/>
       <div>
         <Link
           to="/"
           className="mb-4 text-sm text-gray-600 hover:text-gray-900 hover:underline flex"
         >
-          <ArrowLeft /> Back to home
+          <ArrowLeft className="mr-2"/> Back to home
         </Link>
       </div>
       <>

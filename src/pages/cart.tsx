@@ -8,6 +8,7 @@ import RelatedProducts from "@/components/local/related-products";
 import { CartItem } from "@/types/product";
 import { cartItem } from "@/data/product";
 import { VoucherDialog } from "@/components/local/voucher-dialog";
+import CategoryScrollArea from "@/components/local/category-scrollArea";
 
 export default function CartPage() {
 
@@ -45,6 +46,8 @@ export default function CartPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <CategoryScrollArea/>
+
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-8">
         <Link to="/">Home</Link>
         <span>/</span>

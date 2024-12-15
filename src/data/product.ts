@@ -556,12 +556,12 @@ export const reviews: Review[] = [
 export const categories: Category[] = [
   {
     id: 1,
-    name: "Casual",
+    name: "Casual dhfiuhgdifudghfghfhfhfhfhgfhfhgkufghiufhiufhgifgh",
     image: "https://dosi-in.com/file/detailed/401/dosiin-somehow-set-bo-nam-ao-thun-quan-dai-bgo-centrechat-polyester-cotton-co-gian-sb-somehow-40401887.jpg?w=670&h=670&fit=fill&fm=webp",
     href: "/category/casual",
   }, {
     id: 2,
-    name: "Casual",
+    name: "Casual dnfuigh s kghsig sdfiuh",
     image: "https://dosi-in.com/file/detailed/401/dosiin-somehow-set-bo-nam-ao-thun-quan-dai-bgo-centrechat-polyester-cotton-co-gian-sb-somehow-40401887.jpg?w=670&h=670&fit=fill&fm=webp",
     href: "/category/casual",
   }, {

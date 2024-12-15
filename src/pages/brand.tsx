@@ -6,6 +6,7 @@ import { categories } from "@/data/product";
 import { BrandCategoryCardProps, BrandHeroProps } from "@/types/product";
 import { Pagination } from "@/components/local/pagination";
 import { useState } from "react";
+import CategoryScrollArea from "@/components/local/category-scrollArea";
 
 const categoriesBrand: BrandHeroProps = {
   name: "UrbanStyle",
@@ -65,6 +66,7 @@ export default function UrbanStyleBrandPage() {
     )
   return (
     <div className="container mx-auto px-4 py-8">
+      <CategoryScrollArea/>
       <BrandHero
         name={categoriesBrand.name}
         description={categoriesBrand.description}
