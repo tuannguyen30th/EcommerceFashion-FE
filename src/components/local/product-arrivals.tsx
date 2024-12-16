@@ -29,9 +29,9 @@ const ProductArrival: React.FC<ProductArrivalProps> = ({ title, products, showNa
 
   return (
     <section className="py-12">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto p-10 bg-slate-100 rounded-[5px]">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">{title}</h2>
+          <h2 className="text-2xl font-bold"></h2>
           {showNavigation && (
             <div className="flex space-x-2">
               {currentPage > 0 && (
@@ -49,7 +49,7 @@ const ProductArrival: React.FC<ProductArrivalProps> = ({ title, products, showNa
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
           {currentProducts.map((product) => (
-            <ProductCard key={product.id} product={product} isArrival={true}/>
+            <ProductCard key={product.id} product={product}/>
           ))}
         </div>
       </div>

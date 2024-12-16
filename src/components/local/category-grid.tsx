@@ -22,10 +22,10 @@ export function CategoryGrid() {
   };
 
   return (
-    <section className="py-12 bg-gray">
-      <div className="container mx-auto px-4">
+    <section className="py-12">
+      <div className="container mx-auto p-4 bg-gray-50 rounded-[5px]">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold">CATEGORIES</h2>
+          <h2 className="text-2xl font-bold"></h2>
           <div className="flex space-x-2">
           {currentPage > 0 && (
             <button onClick={prevPage} className="p-2 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
@@ -45,7 +45,7 @@ export function CategoryGrid() {
               to={"/cate"}
               className="group flex flex-col items-center text-center border border-gray-100 h-[150px]"
             >
-              <div className="relative w-20 h-20 mb-2 rounded-full overflow-hidden bg-white p-4 shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="relative mt-2 w-20 h-20 mb-2 rounded-full overflow-hidden bg-white p-4 shadow-sm group-hover:shadow-md transition-shadow">
                 <img
                   src={category.image}
                   alt={category.name}

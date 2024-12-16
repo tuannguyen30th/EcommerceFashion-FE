@@ -22,7 +22,7 @@ export const Brands: React.FC = () => {
 
   return (
     <section className="py-16">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto p-10 bg-slate-100">
         <h2 className="text-3xl font-bold mb-8">BRANDS</h2>
         <div className="relative">
           {/* Arrow Left */}

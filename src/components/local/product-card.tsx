@@ -6,12 +6,9 @@ import { Badge } from "../ui/badge";
 
 interface ProductCardProps {
   product: Product;
-  isArrival?: boolean;
 }
-
 export const ProductCard: React.FC<ProductCardProps> = ({
-  product,
-  isArrival,
+  product
 }) => {
   const navigate = useNavigate();
 
@@ -31,8 +28,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
         <div className="mt-2 space-y-1">
           <div className="flex">
-            <h3 className="text-sm font-medium line-clamp-1">{product.name}</h3>
-            {isArrival && <Badge variant="destructive" className="ml-3">New</Badge>}
+            <h3 className="text-sm font-medium overflow-hidden text-ellipsis text-nowrap w-[130px]">{product.name}</h3>
+            {product.isArrival && <Badge variant="destructive" className="ml-3">New</Badge>}
+            {product.isTop && <Badge variant="destructive" className="ml-3">Top Selling</Badge>}
+            {product.isSale && <Badge variant="destructive" className="ml-3">Sale</Badge>}
           </div>
           <div className="flex items-center space-x-1">
             {Array.from({ length: 5 }).map((_, i) => (

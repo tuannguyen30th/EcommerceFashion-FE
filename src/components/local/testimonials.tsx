@@ -9,8 +9,9 @@ import { Link } from "react-router-dom";
 
 const Testimonials: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(0);
+  const limitedReviews = webSiteReview.slice(0, 10);
   const itemsPerPage = 3;
-  const pageCount = Math.ceil(webSiteReview.length / itemsPerPage);
+  const pageCount = Math.ceil(limitedReviews.length / itemsPerPage);
 
   const handlePrevPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 0));
@@ -23,7 +24,7 @@ const Testimonials: React.FC = () => {
   // Slice the testimonials array to only show the items for the current page
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentProducts = webSiteReview.slice(startIndex, endIndex);
+  const currentProducts = limitedReviews.slice(startIndex, endIndex);
 
   console.log("Current page:", currentPage);
   console.log("Number of products on this page:", currentProducts.length);

@@ -11,6 +11,9 @@ export interface Product {
   colors?: { name: string; value: string }[];
   sizes?: string[];
   description?: string;
+  isArrival?: boolean;
+  isSale?: boolean;
+  isTop?: boolean;
 }
 
 export interface Category {
@@ -33,6 +36,7 @@ export interface Review {
   comment: string;
   date: string;
   photos?: string[];
+
 }
 
 export interface FilterState {
