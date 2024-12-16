@@ -32,7 +32,7 @@ export interface Review {
   rating: number;
   comment: string;
   date: string;
-  photos: string[];
+  photos?: string[];
 }
 
 export interface FilterState {
@@ -125,4 +125,12 @@ export interface BrandCategoryCardProps {
   description: string
   image: string
   href: string
+}
+export interface WebsiteReview {
+  id: string
+  author?: string
+  rating: number
+  title?: string
+  comment: string
+  date: string
 }

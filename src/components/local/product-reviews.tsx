@@ -4,10 +4,22 @@ import { Button } from "@/components/ui/button";
 import type { Review } from "@/types/product";
 import { Pagination } from "./pagination";
 import { reviews } from "@/data/product";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
-
-
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
+import { ReviewForm } from "./review-product-form";
 
 const ProductReviews: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,6 +36,25 @@ const ProductReviews: React.FC = () => {
     }
   };
 
+  const handleNewReview = (newReview: {
+    rating: number;
+    title: string;
+    comment: string;
+    photos?: File;
+  }) => {
+    const review: Review = {
+      id: (reviews.length + 1).toString(),
+      author: "You", // In a real app, this would be the user's name
+      rating: newReview.rating,
+      comment: newReview.comment,
+      date: new Date().toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+    };
+    setCurrentPage([review, ...reviews]);
+  };
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
@@ -34,7 +65,7 @@ const ProductReviews: React.FC = () => {
             <option>Highest Rating</option>
             <option>Lowest Rating</option>
           </select>
-          <Button>Write a Review</Button>
+          <ReviewForm onSubmit={handleNewReview} />
         </div>
       </div>
 
@@ -65,44 +96,44 @@ const ProductReviews: React.FC = () => {
             </div>
             <p className="text-gray-600 mb-2">{review.comment}</p>
             <div className="flex mt-3 flex-wrap gap-2">
-                    {review.photos.map((photo, index) => (
-                      <Dialog key={index}>
-                        <DialogTrigger>
-                          <img
-                            src={photo}
-                            alt={`Review photo ${index + 1}`}
-                            className="rounded-[2px] object-cover"
-                            width={80}
-                            height={80}
-                          />
-                        </DialogTrigger>
-                        <DialogContent>
-                          <DialogHeader>
-                            <DialogTitle>Review Photo</DialogTitle>
-                            <DialogDescription>
-                              <Carousel>
-                                <CarouselContent>
-                                  {review.photos.map((carouselPhoto, idx) => (
-                                    <CarouselItem key={idx}>
-                                      <img
-                                        src={carouselPhoto}
-                                        alt={`Carousel photo ${idx + 1}`}
-                                        className="rounded-lg object-cover"
-                                        width={400}
-                                        height={400}
-                                      />
-                                    </CarouselItem>
-                                  ))}
-                                </CarouselContent>
-                                <CarouselPrevious />
-                                <CarouselNext />
-                              </Carousel>
-                            </DialogDescription>
-                          </DialogHeader>
-                        </DialogContent>
-                      </Dialog>
-                    ))}
-                  </div>
+              {review.photos.map((photo, index) => (
+                <Dialog key={index}>
+                  <DialogTrigger>
+                    <img
+                      src={photo}
+                      alt={`Review photo ${index + 1}`}
+                      className="rounded-[2px] object-cover"
+                      width={80}
+                      height={80}
+                    />
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Review Photo</DialogTitle>
+                      <DialogDescription>
+                        <Carousel>
+                          <CarouselContent>
+                            {review.photos.map((carouselPhoto, idx) => (
+                              <CarouselItem key={idx}>
+                                <img
+                                  src={carouselPhoto}
+                                  alt={`Carousel photo ${idx + 1}`}
+                                  className="rounded-lg object-cover"
+                                  width={400}
+                                  height={400}
+                                />
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious />
+                          <CarouselNext />
+                        </Carousel>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              ))}
+            </div>
           </div>
         ))}
       </div>

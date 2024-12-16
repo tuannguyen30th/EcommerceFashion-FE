@@ -15,7 +15,7 @@ import { newArrivals } from "@/data/product";
 import { Pagination } from "@/components/local/pagination";
 import CategoryScrollArea from "@/components/local/category-scrollArea";
 
-const PRODUCTS_PER_PAGE = 20; 
+const PRODUCTS_PER_PAGE = 20;
 
 const ProductList: React.FC = () => {
   const [filters, setFilters] = useState<FilterState>({
@@ -23,14 +23,13 @@ const ProductList: React.FC = () => {
   });
 
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [currentPage, setCurrentPage] = useState(1)
-  const totalPages = Math.ceil(newArrivals.length / PRODUCTS_PER_PAGE)
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(newArrivals.length / PRODUCTS_PER_PAGE);
 
   const currentProducts = newArrivals.slice(
     (currentPage - 1) * PRODUCTS_PER_PAGE,
     currentPage * PRODUCTS_PER_PAGE
-  )
-
+  );
 
   // State to manage which filter sections are expanded
   const [expandedSections, setExpandedSections] = useState<{
@@ -84,16 +83,15 @@ const ProductList: React.FC = () => {
     });
   };
 
-
   return (
     <div className="container mx-auto px-4 py-8">
-      <CategoryScrollArea/>
+      <CategoryScrollArea />
       <div>
         <Link
           to="/"
           className="mb-4 text-sm text-gray-600 hover:text-gray-900 hover:underline flex"
         >
-          <ArrowLeft className="mr-2"/> Back to home
+          <ArrowLeft className="mr-2" /> Back to home
         </Link>
       </div>
       <>
@@ -236,8 +234,8 @@ const ProductList: React.FC = () => {
               )}
             </div>
 
-           {/* Dress Style */}
-           <div className="space-y-4">
+            {/* Dress Style */}
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="font-medium">Dress Style</h3>
                 <button onClick={() => toggleSection("dressStyle")}>
@@ -268,21 +266,18 @@ const ProductList: React.FC = () => {
           <div className="col-span-3">
             <div className="grid grid-cols-5 gap-2">
               {currentProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                />
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
 
             {/* Pagination */}
             <div className="mt-8 flex justify-center">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-          </div>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </div>
           </div>
         </div>
       </>

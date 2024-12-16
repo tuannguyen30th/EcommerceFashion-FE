@@ -71,7 +71,7 @@ export function ShopReviews({ reviews }: ShopReviewsProps) {
           {currentReviews.map((review) => (
             <div key={review.id} className="mb-6">
               <div className="flex items-start mb-4">
-                <div className="flex-grow">
+                <div className="flex-grow border-b pb-3">
                   <div className="flex items-center mb-2">
                     <span className="text-sm font-medium">{review.author}</span>
                     <div className="flex ml-2">
@@ -91,8 +91,8 @@ export function ShopReviews({ reviews }: ShopReviewsProps) {
                     </span>
                   </div>
                   <p className="text-gray-700">{review.comment}</p>
-                  <div className="flex mt-3 flex-wrap gap-2">
-                    {review.photos.map((photo, index) => (
+                  {/* <div className="flex mt-3 flex-wrap gap-2">
+                    {review?.photos?.map((photo, index) => (
                       <Dialog key={index}>
                         <DialogTrigger>
                           <img
@@ -129,7 +129,7 @@ export function ShopReviews({ reviews }: ShopReviewsProps) {
                         </DialogContent>
                       </Dialog>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

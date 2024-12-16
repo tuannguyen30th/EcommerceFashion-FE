@@ -16,6 +16,9 @@ import { CategoryNavigation } from './components/local/category-navigation';
 import CategoryPage from './pages/categories';
 import UrbanStyleBrandPage from './pages/brand';
 import ComparisonPage from './components/local/comparison-drawer';
+import RegisterShopPage from './pages/sign-up-shop-account';
+import OTPPhoneNumberPage from './pages/otp-phone-number';
+import WebsiteReviewsPage from './pages/website-review';
 
 
 function App() {
@@ -48,9 +51,12 @@ function App() {
         <Route path='/sign-in' element={<LoginPage/>}/>
         <Route path='/sign-up' element={<SignupPage/>}/>
         <Route path='/otp' element={<OTPPage/>}/>
+        <Route path='/otpPhone' element={<OTPPhoneNumberPage/>}/>
         <Route path='/cate' element={<CategoryPage/>}/>
         <Route path='/brand' element={<UrbanStyleBrandPage/>}/>
         <Route path='/compare' element={<ComparisonPage/>}/>
+        <Route path='/registerShop' element={<RegisterShopPage/>}/>
+        <Route path='/webreview' element={<WebsiteReviewsPage/>}/>
       </Routes>
     </Layout>
   );

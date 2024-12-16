@@ -1,5 +1,10 @@
-import { ShopInfoProps } from "@/types/product";
+import { ShopInfoProps, WebsiteReview } from "@/types/product";
 import { Star } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import { Button } from "../ui/button";
+import { WebsiteReviewForm } from "./website-review-form";
+import { useState } from "react";
+import { webSiteReview } from "@/data/product";
 
 export function ShopInfo({
   name,
@@ -9,6 +14,18 @@ export function ShopInfo({
   description,
   logo,
 }: ShopInfoProps) {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [reviews, setReviews] = useState<WebsiteReview[]>(webSiteReview);
+
+  const handleNewReview = (newReview: Omit<WebsiteReview, "id" | "date">) => {
+    const review: WebsiteReview = {
+      ...newReview,
+      id: (reviews.length + 1).toString(),
+      date: new Date().toISOString().split("T")[0],
+    };
+    setReviews([review, ...reviews]);
+    setIsFormOpen(false);
+  };
   return (
     <div
       className="flex items-start space-x-6 p-6 bg-white rounded-lg shadow-lg"
@@ -22,7 +39,20 @@ export function ShopInfo({
       </div>
 
       <div className="flex-1">
-        <h1 className="text-2xl font-bold">{name}</h1>
+        <div className="flex justify-between">
+          <h1 className="text-2xl font-bold">{name}</h1>
+
+          <div className="">
+            <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+              <DialogTrigger asChild>
+                <Button>Write a Review for Shop</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <WebsiteReviewForm onSubmit={handleNewReview} />
+              </DialogContent>
+            </Dialog>
+          </div>
+        </div>
         <div className="flex items-center mt-2">
           <div className="flex">
             {Array.from({ length: 5 }).map((_, i) => (

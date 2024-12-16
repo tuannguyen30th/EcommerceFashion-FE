@@ -1,19 +1,26 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Eye, EyeOff, ShoppingBag } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Eye, EyeOff, ShoppingBag } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function SignupPage() {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Signup submitted')
-  }
+    e.preventDefault();
+    console.log("Signup submitted");
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5 flex items-center justify-center p-4">
@@ -42,16 +49,21 @@ export default function SignupPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="m@example.com" required />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  required
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <div className="relative">
-                  <Input 
-                    id="password" 
-                    type={showPassword ? "text" : "password"} 
-                    placeholder="••••••••" 
-                    required 
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    required
                   />
                   <Button
                     type="button"
@@ -71,11 +83,11 @@ export default function SignupPage() {
               <div className="space-y-2">
                 <Label htmlFor="confirm-password">Confirm Password</Label>
                 <div className="relative">
-                  <Input 
-                    id="confirm-password" 
-                    type={showPassword ? "text" : "password"} 
-                    placeholder="••••••••" 
-                    required 
+                  <Input
+                    id="confirm-password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    required
                   />
                   <Button
                     type="button"
@@ -98,26 +110,33 @@ export default function SignupPage() {
                   htmlFor="terms"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
-                  I agree to the{' '}
+                  I agree to the{" "}
                   <Link to="/terms" className="text-primary hover:underline">
                     terms and conditions
                   </Link>
                 </label>
               </div>
             </div>
-            <Button className="w-full mt-6" type="submit">Create Account</Button>
+            <Button className="w-full mt-6" type="submit">
+              Create Account
+            </Button>
+            <Button className="w-full mt-6" type="submit">
+              <Link to="/registerShop">Become a shop management</Link>
+            </Button>
           </form>
         </CardContent>
         <CardFooter>
           <div className="text-sm text-center w-full">
-            Already have an account?{' '}
-            <Link to="/login" className="text-primary font-semibold hover:underline">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-primary font-semibold hover:underline"
+            >
               Sign in
             </Link>
           </div>
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }
-

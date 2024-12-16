@@ -12,9 +12,12 @@ import {
 } from "../ui/navigation-menu";
 import { ScrollArea } from "../ui/scroll-area";
 import { NavigationShop } from "../local/shop-navigation";
+import { useState } from "react";
+import { Badge } from "../ui/badge";
 
 export function Header() {
- 
+  const [cartItemsCount, setCartItemsCount] = useState(1);
+  const [wishlistItemsCount, setWishlistItemsCount] = useState(1);
   return (
     <header className="border-b sticky top-0 z-50 bg-white">
       <div className="container mx-auto px-4 py-4">
@@ -42,11 +45,21 @@ export function Header() {
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input placeholder="Search for products..." className="pl-8" />
             </div>
-            <Link to="/cart">
+            <Link to="/cart" className="relative">
               <ShoppingCart className="h-6 w-6" />
+              {cartItemsCount > 0 && (
+                <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0">
+                  {cartItemsCount}
+                </Badge>
+              )}
             </Link>
-            <Link to="/wishList">
+            <Link to="/wishList" className="relative">
               <Heart className="h-6 w-6" />
+               {wishlistItemsCount > 0 && (
+                <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0">
+                  {wishlistItemsCount}
+                </Badge>
+              )}
             </Link>
             <Link to="/account">
               <ProfileButton />

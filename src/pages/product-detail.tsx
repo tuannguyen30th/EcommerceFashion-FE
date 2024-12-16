@@ -6,10 +6,12 @@ import ProductReviews from "@/components/local/product-reviews";
 import RelatedProducts from "@/components/local/related-products";
 import { Breadcrumb } from "@/components/local/bread-crumb";
 import CategoryScrollArea from "@/components/local/category-scrollArea";
+import { Link } from "react-router-dom";
 
 interface Product {
   name: string;
   description?: string;
+  shop: string;
   price: number;
   originalPrice?: number;
   rating: number;
@@ -33,7 +35,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <CategoryScrollArea/>
+      <CategoryScrollArea />
       <Breadcrumb
         items={[
           { label: "Home", href: "/" },
@@ -77,6 +79,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
         {/* Product Info */}
         <div className="space-y-6">
           <h1 className="text-4xl font-bold">{product.name}</h1>
+          <div className="flex items-center">
+            <h3 className="text-xl font-bold">Shop:</h3>
+            <Link to={"/shop"} className="ml-3 italic hover:underline"><p className="text-gray-600"> Nhà của mèo </p></Link>
+          </div>
 
           <div className="flex items-center space-x-2">
             <div className="flex">
@@ -179,7 +185,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
-              <span className="flex-1 text-gray-600">1001 products available</span>
+              <span className="flex-1 text-gray-600">
+                1001 products available
+              </span>
             </div>
             <Button className="w-1/2">Add to Cart</Button>
           </div>

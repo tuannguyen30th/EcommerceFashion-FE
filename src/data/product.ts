@@ -1,4 +1,4 @@
-import { CartItem, Category, OrderItem, Product, RelatedProduct, Review, ShopInfo, Testimonial, WishlistItem } from "@/types/product"
+import { CartItem, Category, OrderItem, Product, RelatedProduct, Review, ShopInfo, Testimonial, WebsiteReview, WishlistItem } from "@/types/product"
 
 export const newArrivals: Product[] = [
   {
@@ -902,3 +902,79 @@ export const wishList: WishlistItem[] = [
     quantity: 1,
   },
 ];
+
+export const webSiteReview: WebsiteReview[] = [
+  {
+    id: '1',
+    author: 'John Doe',
+    rating: 5,
+    title: 'Amazing shopping experience!',
+    comment: 'This website is incredibly user-friendly and offers a wide range of products. The checkout process was smooth, and I received my order quickly. Highly recommended!',
+    date: '2023-06-15',
+  },
+  {
+    id: '2',
+    author: 'Jane Smith',
+    rating: 4,
+    title: 'Great selection, but could improve search',
+    comment: 'I love the variety of products available on this site. However, the search functionality could be more refined to help find specific items more easily. Overall, a very good experience.',
+    date: '2023-06-10',
+  },{
+      id: '3',
+      author: 'Jane Smith',
+      rating: 4,
+      title: 'Great selection, but could improve search',
+      comment: 'I love the variety of products available on this site. However, the search functionality could be more refined to help find specific items more easily. Overall, a very good experience.',
+      date: '2023-06-10',
+    },{
+      id: '4',
+      author: 'Jane Smith',
+      rating: 4,
+      title: 'Great selection, but could improve search',
+      comment: 'I love the variety of products available on this site. However, the search functionality could be more refined to help find specific items more easily. Overall, a very good experience.',
+      date: '2023-06-10',
+    },{
+      id: '5',
+      author: 'Jane Smith',
+      rating: 4,
+      title: 'Great selection, but could improve search',
+      comment: 'I love the variety of products available on this site. However, the search functionality could be more refined to help find specific items more easily. Overall, a very good experience.',
+      date: '2023-06-10',
+    },{
+      id: '6',
+      author: 'Jane Smith',
+      rating: 4,
+      title: 'Great selection, but could improve search',
+      comment: 'I love the variety of products available on this site. However, the search functionality could be more refined to help find specific items more easily. Overall, a very good experience.',
+      date: '2023-06-10',
+    },{
+      id: '7',
+      author: 'Jane Smith',
+      rating: 4,
+      title: 'Great selection, but could improve search',
+      comment: 'I love the variety of products available on this site. However, the search functionality could be more refined to help find specific items more easily. Overall, a very good experience.',
+      date: '2023-06-10',
+    },{
+      id: '8',
+      author: 'Jane Smith',
+      rating: 4,
+      title: 'Great selection, but could improve search',
+      comment: 'I love the variety of products available on this site. However, the search functionality could be more refined to help find specific items more easily. Overall, a very good experience.',
+      date: '2023-06-10',
+    },{
+      id: '9',
+      author: 'Jane Smith',
+      rating: 4,
+      title: 'Great selection, but could improve search',
+      comment: 'I love the variety of products available on this site. However, the search functionality could be more refined to help find specific items more easily. Overall, a very good experience.',
+      date: '2023-06-10',
+    },{
+      id: '10',
+      author: 'Jane Smith',
+      rating: 4,
+      title: 'Great selection, but could improve search',
+      comment: 'I love the variety of products available on this site. However, the search functionality could be more refined to help find specific items more easily. Overall, a very good experience.',
+      date: '2023-06-10',
+    },
+  // Add more initial reviews as needed
+]
