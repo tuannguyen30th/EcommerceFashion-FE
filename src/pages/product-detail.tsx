@@ -195,57 +195,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
       </div>
 
       <div className="mt-16">
-        <Tabs defaultValue="details">
-          <TabsList className="w-full flex justify-around bg-gray-100 border rounded-md">
-            <TabsTrigger value="details" className="flex-1 text-center">
-              Product Details
-            </TabsTrigger>
-            <TabsTrigger value="reviews" className="flex-1 text-center">
-              Rating & Reviews
-            </TabsTrigger>
-            <TabsTrigger value="faqs" className="flex-1 text-center">
-              FAQs
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value="details">
-            <div className="prose max-w-none">
-              <h3>Product Description</h3>
-              <p>
-                {product.description ||
-                  "The product features a unique design that combines style and comfort. Made from premium materials, this product offers breathability and durability for everyday use."}
-              </p>
-              <ul>
-                <li>100% Premium Cotton</li>
-                <li>Regular Fit</li>
-                <li>Round Neck</li>
-                <li>Short Sleeves</li>
-                <li>Machine Washable</li>
-              </ul>
-            </div>
-          </TabsContent>
-          <TabsContent value="reviews">
             <ProductReviews />
-          </TabsContent>
-          <TabsContent value="faqs">
-            <div className="prose max-w-none">
-              <h3>Frequently Asked Questions</h3>
-              <div className="space-y-4">
-                <div>
-                  <h4>What is the sizing like?</h4>
-                  <p>Our t-shirts run true to size with a regular fit.</p>
-                </div>
-                <div>
-                  <h4>How do I care for this t-shirt?</h4>
-                  <p>Machine wash cold, tumble dry low. Do not bleach.</p>
-                </div>
-                <div>
-                  <h4>What is the shipping time?</h4>
-                  <p>Standard shipping takes 3-5 business days.</p>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>
       </div>
 
       <RelatedProducts />

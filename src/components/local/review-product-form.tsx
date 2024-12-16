@@ -18,16 +18,16 @@ interface ReviewFormProps {
     rating: number;
     title: string;
     comment: string;
-    image?: File;
+    images?: File[];
   }) => void;
 }
 
 export function ReviewForm({ onSubmit }: ReviewFormProps) {
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(5)
   const [title, setTitle] = useState('')
   const [comment, setComment] = useState('')
-  const [image, setImage] = useState<File | null>(null)
-  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [images, setImages] = useState<File[]>([])
+  const [imagePreviews, setImagePreviews] = useState<string[]>([])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -35,24 +35,22 @@ export function ReviewForm({ onSubmit }: ReviewFormProps) {
       alert('Please select a rating')
       return
     }
-    onSubmit({ rating, title, comment, image: image || undefined })
+    onSubmit({ rating, title, comment, images: images.length > 0 ? images : undefined })
   }
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      setImage(file)
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string)
-      }
-      reader.readAsDataURL(file)
+    const files = e.target.files
+    if (files) {
+      const newImages = Array.from(files)
+      const newPreviews = newImages.map((file) => URL.createObjectURL(file))
+      setImages((prev) => [...prev, ...newImages])
+      setImagePreviews((prev) => [...prev, ...newPreviews])
     }
   }
 
-  const removeImage = () => {
-    setImage(null)
-    setImagePreview(null)
+  const removeImage = (index: number) => {
+    setImages((prev) => prev.filter((_, i) => i !== index))
+    setImagePreviews((prev) => prev.filter((_, i) => i !== index))
   }
 
   return (
@@ -103,36 +101,41 @@ export function ReviewForm({ onSubmit }: ReviewFormProps) {
             />
           </div>
           <div>
-            <Label htmlFor="image">Add an Image (Optional)</Label>
-            <div className="mt-1 flex items-center space-x-4">
+            <Label htmlFor="images">Add Images (Optional)</Label>
+            <div className="mt-1 flex flex-wrap items-center gap-4">
               <Label
-                htmlFor="image"
+                htmlFor="images"
                 className="cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
               >
                 <Upload className="mr-2 h-4 w-4" />
-                Upload Image
+                Upload Images
               </Label>
               <Input
-                id="image"
+                id="images"
                 type="file"
                 accept="image/*"
+                multiple
                 onChange={handleImageUpload}
                 className="hidden"
               />
-              {imagePreview && (
-                <div className="relative">
-                  <img src={imagePreview} alt="Preview" className="h-20 w-20 object-cover rounded" />
+              {imagePreviews.map((preview, index) => (
+                <div key={index} className="relative">
+                  <img
+                    src={preview}
+                    alt={`Preview ${index}`}
+                    className="h-20 w-20 object-cover rounded"
+                  />
                   <Button
                     type="button"
                     variant="secondary"
                     size="icon"
                     className="absolute -top-2 -right-2 h-6 w-6 rounded-full"
-                    onClick={removeImage}
+                    onClick={() => removeImage(index)}
                   >
                     <X className="h-4 w-4" />
                   </Button>
                 </div>
-              )}
+              ))}
             </div>
           </div>
           <Button type="submit">Submit Review</Button>
@@ -141,4 +144,3 @@ export function ReviewForm({ onSubmit }: ReviewFormProps) {
     </Dialog>
   )
 }
-

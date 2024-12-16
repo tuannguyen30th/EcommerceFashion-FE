@@ -26,6 +26,8 @@ export function WebsiteReviewList({ reviews }: WebsiteReviewListProps) {
           <option>Most Recent</option>
           <option>Highest Rated</option>
           <option>Lowest Rated</option>
+          <option>Recent Days</option>
+          <option>Old Days</option>
         </select>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

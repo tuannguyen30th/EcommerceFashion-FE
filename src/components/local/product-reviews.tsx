@@ -64,6 +64,8 @@ const ProductReviews: React.FC = () => {
             <option>Latest</option>
             <option>Highest Rating</option>
             <option>Lowest Rating</option>
+            <option>Recent Days</option>
+            <option>Old Days</option>
           </select>
           <ReviewForm onSubmit={handleNewReview} />
         </div>
