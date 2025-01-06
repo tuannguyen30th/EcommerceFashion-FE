@@ -263,63 +263,56 @@ export const cartItem: CartItem[] = [
   {
     id: "1",
     name: "Gradient Graphic T-shirt",
-    price: 145,
+    defaultPrice: 145,
+    salePrice: 120,
     size: "Large",
     color: "White",
     image: "/placeholder.svg",
     quantity: 1,
   },
   {
-    id: "2",
-    name: "Checkered Shirt",
-    price: 180,
-    size: "Medium",
-    color: "Red",
+    id: "1",
+    name: "Gradient Graphic T-shirt",
+    defaultPrice: 145,
+    salePrice: 120,
+    size: "Large",
+    color: "White",
     image: "/placeholder.svg",
     quantity: 1,
-  },
-  {
-    id: "3",
-    name: "Skinny Fit Jeans",
-    price: 240,
+  },{
+    id: "1",
+    name: "Gradient Graphic T-shirt",
+    defaultPrice: 145,
+    salePrice: 120,
     size: "Large",
-    color: "Blue",
+    color: "White",
     image: "/placeholder.svg",
     quantity: 1,
-  },
-  {
-    id: "4",
-    name: "Skinny Fit Jeans",
-    price: 240,
+  },{
+    id: "1",
+    name: "Gradient Graphic T-shirt",
+    defaultPrice: 145,
+    salePrice: 120,
     size: "Large",
-    color: "Blue",
+    color: "White",
     image: "/placeholder.svg",
     quantity: 1,
-  },
-  {
-    id: "5",
-    name: "Skinny Fit Jeans",
-    price: 240,
+  },{
+    id: "1",
+    name: "Gradient Graphic T-shirt",
+    defaultPrice: 145,
+    salePrice: 120,
     size: "Large",
-    color: "Blue",
+    color: "White",
     image: "/placeholder.svg",
     quantity: 1,
-  },
-  {
-    id: "6",
-    name: "Skinny Fit Jeans",
-    price: 240,
+  },{
+    id: "1",
+    name: "Gradient Graphic T-shirt",
+    defaultPrice: 145,
+    salePrice: 120,
     size: "Large",
-    color: "Blue",
-    image: "/placeholder.svg",
-    quantity: 1,
-  },
-  {
-    id: "7",
-    name: "Skinny Fit Jeans",
-    price: 240,
-    size: "Large",
-    color: "Blue",
+    color: "White",
     image: "/placeholder.svg",
     quantity: 1,
   },
@@ -804,102 +797,58 @@ export const wishList: WishlistItem[] = [
   {
     id: "1",
     name: "Gradient Graphic T-shirt",
-    price: 145,
+    defaultPrice: 145,
     size: "Large",
     color: "White",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWIloQi3tgZAxkQDNbN3hHwirzKN3QKbWRzA&s",
-    quantity: 1,
+    salePrice: 120,
+    quantity : 1
+
   },
   {
-    id: "2",
-    name: "Checkered Shirt",
-    price: 180,
-    size: "Medium",
-    color: "Red",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRANdcdShgRopxhfjwKd8fdQFkHuhFgNO8DbY&s",
-    quantity: 1,
-  },
-  {
-    id: "3",
-    name: "Denim Jacket",
-    price: 220,
+    id: "1",
+    name: "Gradient Graphic T-shirt",
+    defaultPrice: 145,
     size: "Large",
-    color: "Blue",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNhzdWZKE8tfsFJAjOcEtBO3BgS-tDKtMDQw&s",
-    quantity: 1,
-  },
-  {
-    id: "4",
-    name: "Hooded Sweatshirt",
-    price: 175,
-    size: "Small",
-    color: "Black",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpMd84OwXlGeOWMHF9eghy1BIlQ39LkxuZUw&s",
-    quantity: 1,
-  },
-  {
-    id: "5",
-    name: "Classic Polo Shirt",
-    price: 120,
-    size: "Medium",
-    color: "Green",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThRjs3OkNs_WkrhySdo5COewmlm5G6LOzrUA&s",
-    quantity: 1,
-  },
-  {
-    id: "6",
-    name: "Casual Sneakers",
-    price: 300,
-    size: "9 (US)",
     color: "White",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwKcDEwxwRs2OknOSCS9UJXsPVO3DkCqIpVA&s",
-    quantity: 1,
-  },
-  {
-    id: "7",
-    name: "Leather Belt",
-    price: 75,
-    size: "One Size",
-    color: "Brown",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWIloQi3tgZAxkQDNbN3hHwirzKN3QKbWRzA&s",
+    salePrice: 120,
+    quantity : 1
+
+  }, {
+    id: "1",
+    name: "Gradient Graphic T-shirt",
+    defaultPrice: 145,
+    size: "Large",
+    color: "White",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf4Lp48pdSMy0cyVQaY4BXFA69i79YR8WAJw&s",
-    quantity: 1,
-  },
-  {
-    id: "8",
-    name: "Slim Fit Jeans",
-    price: 200,
-    size: "32",
-    color: "Dark Blue",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWIloQi3tgZAxkQDNbN3hHwirzKN3QKbWRzA&s",
+    salePrice: 120,
+    quantity : 1
+
+  }, {
+    id: "1",
+    name: "Gradient Graphic T-shirt",
+    defaultPrice: 145,
+    size: "Large",
+    color: "White",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiVjP8OuHPSbThmjNeaqOZyMfpoXnn82pSnQ&s",
-    quantity: 1,
-  },
-  {
-    id: "9",
-    name: "Woolen Scarf",
-    price: 90,
-    size: "One Size",
-    color: "Gray",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWIloQi3tgZAxkQDNbN3hHwirzKN3QKbWRzA&s",
+    salePrice: 120,
+    quantity : 1
+
+  }, {
+    id: "1",
+    name: "Gradient Graphic T-shirt",
+    defaultPrice: 145,
+    size: "Large",
+    color: "White",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvXeyv2PjKrGMbFbKZKvTFL8_qZBh_XUHIhg&s",
-    quantity: 1,
-  },
-  {
-    id: "10",
-    name: "Bucket Hat",
-    price: 50,
-    size: "One Size",
-    color: "Beige",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM9V0upLHoB6Yufq5uNLXPE10OFekWxWt_oA&s",
-    quantity: 1,
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWIloQi3tgZAxkQDNbN3hHwirzKN3QKbWRzA&s",
+    salePrice: 120,
+    quantity : 1
   },
 ];
 

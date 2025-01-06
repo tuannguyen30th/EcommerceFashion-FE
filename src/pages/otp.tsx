@@ -11,7 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 export default function OTPPage() {
   const [otp, setOtp] = useState(["", "", "", "", ""]);
@@ -58,8 +59,16 @@ export default function OTPPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5 flex justify-between p-4">
+      <div>
+        <Link
+          to="/"
+          className="mb-4 text-sm text-gray-600 hover:text-gray-900 hover:underline flex"
+        >
+          <ArrowLeft className="mr-2" /> Back to home
+        </Link>
+      </div>
+      <Card className="w-full max-w-md h-2/3 mt-20">
         <CardHeader>
           <CardTitle className="text-2xl text-center">
             Verify Your Account
@@ -97,6 +106,7 @@ export default function OTPPage() {
           </Button>
         </CardFooter>
       </Card>
+      <div></div>
     </div>
   );
 }

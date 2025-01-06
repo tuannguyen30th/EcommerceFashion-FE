@@ -15,8 +15,8 @@ interface Product {
   price: number;
   originalPrice?: number;
   rating: number;
-  colors: { name: string; value: string }[];
-  sizes: string[];
+  colors: { id: string; value: string }[];
+  sizes: {id: string; value: string}[];
   images: string[];
   stock: number;
 }
@@ -27,9 +27,11 @@ interface ProductDetailProps {
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const [selectedColor, setSelectedColor] = useState<string>(
-    product.colors[0].name
+    product.colors[0].id
   );
-  const [selectedSize, setSelectedSize] = useState<string>(product.sizes[0]);
+  const [selectedSize, setSelectedSize] = useState<string>(
+    product.sizes[0].id
+  );
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState<string>(product.images[0]);
 
@@ -131,16 +133,16 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
               <div className="flex space-x-2">
                 {product.colors.map((color) => (
                   <button
-                    key={color.name}
-                    onClick={() => setSelectedColor(color.name)}
+                    key={color.id}
+                    onClick={() => setSelectedColor(color.id)}
                     className={`w-8 h-8 rounded-full relative ${
-                      selectedColor === color.name
+                      selectedColor === color.id
                         ? "ring-2 ring-offset-2 ring-black"
                         : ""
                     }`}
                     style={{ backgroundColor: color.value }}
                   >
-                    {selectedColor === color.name && (
+                    {selectedColor === color.id && (
                       <Check className="w-4 h-4 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                     )}
                   </button>
@@ -153,15 +155,15 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
               <div className="flex flex-wrap gap-2">
                 {product.sizes.map((size) => (
                   <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
+                    key={size.id}
+                    onClick={() => setSelectedSize(size.id)}
                     className={`px-4 py-2 rounded-md border ${
-                      selectedSize === size
+                      selectedSize === size.id
                         ? "border-black bg-black text-white"
                         : "border-gray-200 hover:border-black"
                     }`}
                   >
-                    {size}
+                    {size.value}
                   </button>
                 ))}
               </div>

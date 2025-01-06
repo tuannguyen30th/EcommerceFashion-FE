@@ -61,7 +61,7 @@ export function VoucherDialog({
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleVoucherSelect = (code: string, discount: number) => {
+  const handleVoucherSelect = (code: string , discount: number) => {
     setPromoCode(code);
     setDiscount(discount)
     setOpen(false);

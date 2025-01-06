@@ -15,7 +15,6 @@ import { wishList } from "@/data/product";
 import { WishlistItem } from "@/types/product";
 import CategoryScrollArea from "@/components/local/category-scrollArea";
 
-
 const itemsPerPage = 3;
 export default function WishlistPage() {
   const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>(wishList);
@@ -54,7 +53,7 @@ export default function WishlistPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <CategoryScrollArea/>
+      <CategoryScrollArea />
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-8">
         <Link to="/">Home</Link>
         <span>/</span>
@@ -86,11 +85,31 @@ export default function WishlistPage() {
               <div className="mt-1 text-sm text-gray-600">
                 <p>Size: {item.size}</p>
                 <p>Color: {item.color}</p>
+                <div className="flex justify-start items-center">
+                  <span className="text-sm font-bold mr-2">
+                    ${item.defaultPrice}
+                  </span>
+                  {item.salePrice && (
+                    <>
+                      <span className="text-xs text-gray-500 line-through mr-2">
+                        ${item.salePrice}
+                      </span>
+                      <span className="text-xs text-red-500">
+                        -
+                        {Math.round(
+                          ((item.salePrice - item.defaultPrice) /
+                            item.salePrice) *
+                            100
+                        )}
+                        %
+                      </span>
+                    </>
+                  )}
+                </div>
               </div>
+
               <div className="mt-4 flex items-center justify-between">
-                <span className="font-bold text-[20px]">
-                  Price: ${item.price}
-                </span>
+                <div></div>
                 <div className="flex ">
                   <div className="flex items-center border rounded-md mr-2">
                     <button

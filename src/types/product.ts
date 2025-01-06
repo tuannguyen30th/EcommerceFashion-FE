@@ -36,7 +36,6 @@ export interface Review {
   comment: string;
   date: string;
   photos?: string[];
-
 }
 
 export interface FilterState {
@@ -50,7 +49,8 @@ export interface FilterState {
 export interface CartItem {
   id: string;
   name: string;
-  price: number;
+  defaultPrice: number;
+  salePrice: number;
   size: string;
   color: string;
   image: string;
@@ -91,7 +91,7 @@ export interface RelatedProduct {
   image: string;
 }
 export interface ShopInfo {
-  id:string
+  id: string;
   name: string;
   rating?: number;
   totalReviews?: number;
@@ -99,42 +99,43 @@ export interface ShopInfo {
   description: string;
   logo: string;
 }
-export interface WishlistItem{
+export interface WishlistItem {
   id: string;
   name: string;
-  price: number;
+  defaultPrice: number;
   size: string;
   color: string;
   image: string;
+  salePrice: number;
   quantity: number;
 }
 
 export interface ShopInfoProps {
-  name: string
-  rating: number
-  totalReviews: number
-  followers: number
-  description: string
-  logo: string
+  name: string;
+  rating: number;
+  totalReviews: number;
+  followers: number;
+  description: string;
+  logo: string;
 }
 
 export interface BrandHeroProps {
-  name: string
-  description: string
-  logo: string
-  coverImage: string
+  name: string;
+  description: string;
+  logo: string;
+  coverImage: string;
 }
 export interface BrandCategoryCardProps {
-  name: string
-  description: string
-  image: string
-  href: string
+  name: string;
+  description: string;
+  image: string;
+  href: string;
 }
 export interface WebsiteReview {
-  id: string
-  author?: string
-  rating: number
-  title?: string
-  comment: string
-  date: string
+  id: string;
+  author?: string;
+  rating: number;
+  title?: string;
+  comment: string;
+  date: string;
 }

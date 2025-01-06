@@ -11,11 +11,10 @@ import { VoucherDialog } from "@/components/local/voucher-dialog";
 import CategoryScrollArea from "@/components/local/category-scrollArea";
 
 export default function CartPage() {
-
   const [cartItems, setCartItems] = useState<CartItem[]>(cartItem);
-
   const [promoCode, setPromoCode] = useState("");
   const [discountValue, setDiscountValue] = useState(0);
+  const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
 
   const updateQuantity = (id: string, increment: boolean) => {
     setCartItems((items) =>
@@ -34,19 +33,43 @@ export default function CartPage() {
 
   const removeItem = (id: string) => {
     setCartItems((items) => items.filter((item) => item.id !== id));
+    setSelectedItems((prev) => {
+      const newSet = new Set(prev);
+      newSet.delete(id);
+      return newSet;
+    });
   };
 
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
-  const discount = subtotal * (Number(discountValue) / 100); 
-  const deliveryFee = 15;
-  const total = subtotal - discount - deliveryFee;
+  const handleCheckboxChange = (id: string) => {
+    setSelectedItems((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
+  const subtotal = cartItems.reduce((sum, item) => {
+    if (selectedItems.has(item.id)) {
+      return (
+        sum +
+        (item.salePrice > 0 ? item.salePrice : item.defaultPrice) *
+          item.quantity
+      );
+    }
+    return sum;
+  }, 0);
+
+  const discount = subtotal * (Number(discountValue) / 100);
+  const deliveryFee = 15; // Example value, optional
+  const total = subtotal - discount;
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <CategoryScrollArea/>
+      <CategoryScrollArea />
 
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-8">
         <Link to="/">Home</Link>
@@ -56,7 +79,7 @@ export default function CartPage() {
 
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-4">
-          <ScrollArea className=" h-[500px] rounded-md border p-4">
+          <ScrollArea className="h-[500px] rounded-md border p-4">
             {cartItems.map((item) => (
               <div
                 key={item.id}
@@ -72,7 +95,16 @@ export default function CartPage() {
                 </div>
                 <div className="flex-1">
                   <div className="flex justify-between">
-                    <h3 className="font-medium">{item.name}</h3>
+                    <div className="flex items-center">
+                      <h3 className="font-medium">{item.name}</h3>
+                      <input
+                        type="checkbox"
+                        checked={selectedItems.has(item.id)}
+                        onChange={() => handleCheckboxChange(item.id)}
+                        className="mt-2 ml-5"
+                      />
+                    </div>
+
                     <button
                       onClick={() => removeItem(item.id)}
                       className="text-red-500 hover:text-red-700"
@@ -84,12 +116,29 @@ export default function CartPage() {
                     <p>Size: {item.size}</p>
                     <p>Color: {item.color}</p>
                   </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-[20px]">
-                      Price: ${item.price}
+                  <div className="flex justify-start items-center">
+                    <span className="text-sm font-bold mr-2">
+                      ${item.defaultPrice}
                     </span>
-
+                    {item.salePrice && (
+                      <>
+                        <span className="text-xs text-gray-500 line-through mr-2">
+                          ${item.salePrice}
+                        </span>
+                        <span className="text-xs text-red-500">
+                          -
+                          {Math.round(
+                            ((item.salePrice - item.defaultPrice) /
+                              item.salePrice) *
+                              100
+                          )}
+                          %
+                        </span>
+                      </>
+                    )}
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div></div>
                     <div className="flex items-center border rounded-md">
                       <button
                         onClick={() => updateQuantity(item.id, false)}
@@ -120,26 +169,27 @@ export default function CartPage() {
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-600">Subtotal</span>
-                <span className="font-medium">${subtotal}</span>
+                <span className="font-medium">${subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-red-500">
                 <span>
-                  Discount ({Number(discountValue) === 0 ? "No discount" : `-${discountValue}%`}
+                  Discount (
+                  {Number(discountValue) === 0
+                    ? "No discount"
+                    : `-${discountValue}%`}
                   )
                 </span>
                 <span>
                   {Number(discountValue) === 0
                     ? "$0.00"
-                    : `-$${(subtotal * (Number(discountValue) / 100)).toFixed(2)}`}
+                    : `-$${(subtotal * (Number(discountValue) / 100)).toFixed(
+                        2
+                      )}`}
                 </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Delivery Fee</span>
-                <span className="font-medium">${deliveryFee}</span>
               </div>
               <div className="border-t pt-3 flex justify-between font-bold">
                 <span>Total</span>
-                <span>${total}</span>
+                <span>${total.toFixed(2)}</span>
               </div>
             </div>
 
@@ -148,7 +198,6 @@ export default function CartPage() {
                 placeholder="Add promo code"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
-                readOnly
               />
               <VoucherDialog
                 promoCode={promoCode}
