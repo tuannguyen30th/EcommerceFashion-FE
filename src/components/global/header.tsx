@@ -2,15 +2,7 @@ import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Link, Links } from "react-router-dom";
 import ProfileButton from "../local/profile-drop-down";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "../ui/navigation-menu";
-import { ScrollArea } from "../ui/scroll-area";
+
 import { NavigationShop } from "../local/shop-navigation";
 import { useState } from "react";
 import { Badge } from "../ui/badge";
@@ -27,7 +19,7 @@ export function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
-           <NavigationShop/>
+            <NavigationShop />
 
             <Link to="/productList" className="text-sm font-medium">
               On Sale
@@ -55,15 +47,13 @@ export function Header() {
             </Link>
             <Link to="/wishList" className="relative">
               <Heart className="h-6 w-6" />
-               {wishlistItemsCount > 0 && (
+              {wishlistItemsCount > 0 && (
                 <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0">
                   {wishlistItemsCount}
                 </Badge>
               )}
             </Link>
-            <Link to="/account">
-              <ProfileButton />
-            </Link>
+            <ProfileButton />
           </div>
         </div>
       </div>

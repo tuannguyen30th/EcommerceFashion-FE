@@ -9,11 +9,10 @@ import { Link } from "react-router-dom";
 import { newArrivals } from "@/data/product";
 import { Pagination } from "@/components/local/pagination";
 import CategoryScrollArea from "@/components/local/category-scrollArea";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const PRODUCTS_PER_PAGE = 20;
 
-const ProductList: React.FC = () => {
+const ProductListPage: React.FC = () => {
   const [filters, setFilters] = useState<FilterState>({
     priceRange: [0, 200],
     rating: 0,
@@ -371,5 +370,5 @@ const ProductList: React.FC = () => {
   );
 };
 
-export default ProductList;
+export default ProductListPage;
 

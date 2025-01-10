@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,19 +8,26 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { ClipboardList, LogIn, LogOut, User, UserIcon, UserPen } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '@/context/auth-context'; // Adjust the path to your `AuthContext`
+} from "@/components/ui/dropdown-menu";
+import {
+  ClipboardList,
+  LogIn,
+  LogOut,
+  User,
+  UserIcon,
+  UserPen,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/context/auth-context"; // Adjust the path to your `AuthContext`
 
 type Props = {
   className?: string;
 };
 
 export default function ProfileButton({ className }: Props) {
-  const { user, logout, login } = useAuth();
+  const { token, logout } = useAuth();
 
-  if (!user) {
+  if (!token) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -36,7 +43,7 @@ export default function ProfileButton({ className }: Props) {
         <DropdownMenuContent className="w-56 bg-white text-primary">
           <DropdownMenuGroup>
             <DropdownMenuItem asChild className="cursor-pointer">
-              <Link to="/sign-in" >
+              <Link to="/sign-in">
                 <LogIn className="w-4 h-4 mr-2" />
                 <span>Đăng nhập</span>
               </Link>
@@ -52,7 +59,11 @@ export default function ProfileButton({ className }: Props) {
       </DropdownMenu>
     );
   }
-
+  const user = {
+    shopLogo: "",
+    userName: "123",
+    email: "abc@gmail.com",
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -88,10 +99,7 @@ export default function ProfileButton({ className }: Props) {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          onClick={() => logout()}
-          className="cursor-pointer"
-        >
+        <DropdownMenuItem onClick={() => logout()} className="cursor-pointer">
           <LogOut className="w-4 h-4 mr-2" />
           <span>Đăng Xuất</span>
         </DropdownMenuItem>

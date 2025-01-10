@@ -9,7 +9,7 @@ import { Pagination } from "@/components/local/pagination";
 import { Brands } from "@/components/local/brand";
 import { ProductCard } from "@/components/local/product-card";
 
-const Home: React.FC = () => {
+const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 16;
   const totalPages = Math.ceil(topSelling.length / productsPerPage);
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
           {/* <h2 className="text-2xl font-bold mb-8">TOP SELLINGS</h2> */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
             {currentProducts.map((product) => (
-              <ProductCard key={product.id} product={product}/>
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
           <div className="mt-8 flex justify-center">
@@ -51,4 +51,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HomePage;

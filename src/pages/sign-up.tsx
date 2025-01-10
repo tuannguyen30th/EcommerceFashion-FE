@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ArrowLeft, Eye, EyeOff, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useNavigate } from "react-router";
+
 import {
   Card,
   CardContent,
@@ -17,11 +16,21 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { signupSchema, type SignupFormData } from "@/schemas/signupSchema";
+import { signUpSchema, type SignUpFormData } from "@/schemas/authSchemas/sign-up-schema";
+import { authService } from "../utils/auth-service";
+import { ResponseType } from "@/types/response-global";
+import { useToast } from "@/hooks/use-toast";
+import { ROUTES } from "@/constants/routes";
+import { AxiosError } from "axios";
 
 export default function SignupPage() {
-  const { control, handleSubmit, formState: { errors }, watch } = useForm<SignupFormData>({
-    resolver: zodResolver(signupSchema),
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<SignUpFormData>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -36,36 +45,49 @@ export default function SignupPage() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
-  const onSubmit = async (data: SignupFormData) => {
+  const onSubmit = async (data: SignUpFormData) => {
     try {
-      const response = await fetch("https://localhost:7125/api/authentications/sign-up", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          roles: [0], 
-        }),
-      });
+      const response = await authService.signupAccount(data);
 
-      const result = await response.json();
-
-      if (response.ok) {
-        toast.success("Account created successfully!");
+      const sigupData = response.data as ResponseType;
+      if (response.status === 200) {
+        toast({
+          description: sigupData.message,
+        });
+        navigate(ROUTES.OTP, {
+          preventScrollReset: false,
+          state: {
+            data: {
+              email: getValues("email"),
+            },
+          },
+        });
       } else {
-        toast.error(result.message || "An error occurred during signup.");
+        toast({
+          variant: "destructive",
+          description: sigupData.message || "An error occurred during signup.",
+        });
       }
     } catch (error) {
-      toast.error("Failed to connect to the server. Please try again.");
+      if (error instanceof AxiosError) {
+        toast({
+          variant: "destructive",
+          description: error.response?.data?.message,
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          description: "Failed to connect to the server. Please try again.",
+        });
+      }
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5 flex justify-between p-4">
-      <ToastContainer position="top-right" autoClose={5000} />
       <div>
         <Link
           to="/"
@@ -96,7 +118,11 @@ export default function SignupPage() {
                   <Input id="firstName" placeholder="John" {...field} />
                 )}
               />
-              {errors.firstName && <p className="text-sm text-red-500">{errors.firstName.message}</p>}
+              {errors.firstName && (
+                <p className="text-sm text-red-500">
+                  {errors.firstName.message}
+                </p>
+              )}
             </div>
 
             {/* Last Name */}
@@ -109,7 +135,11 @@ export default function SignupPage() {
                   <Input id="lastName" placeholder="Doe" {...field} />
                 )}
               />
-              {errors.lastName && <p className="text-sm text-red-500">{errors.lastName.message}</p>}
+              {errors.lastName && (
+                <p className="text-sm text-red-500">
+                  {errors.lastName.message}
+                </p>
+              )}
             </div>
 
             {/* Username */}
@@ -122,7 +152,11 @@ export default function SignupPage() {
                   <Input id="username" placeholder="johndoe123" {...field} />
                 )}
               />
-              {errors.username && <p className="text-sm text-red-500">{errors.username.message}</p>}
+              {errors.username && (
+                <p className="text-sm text-red-500">
+                  {errors.username.message}
+                </p>
+              )}
             </div>
 
             {/* Email */}
@@ -135,7 +169,9 @@ export default function SignupPage() {
                   <Input id="email" placeholder="john@example.com" {...field} />
                 )}
               />
-              {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-sm text-red-500">{errors.email.message}</p>
+              )}
             </div>
 
             {/* Password */}
@@ -162,7 +198,11 @@ export default function SignupPage() {
                   </div>
                 )}
               />
-              {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+              {errors.password && (
+                <p className="text-sm text-red-500">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
             {/* Confirm Password */}
@@ -172,11 +212,18 @@ export default function SignupPage() {
                 name="confirmPassword"
                 control={control}
                 render={({ field }) => (
-                  <Input id="confirmPassword" type="password" placeholder="••••••••" {...field} />
+                  <Input
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="••••••••"
+                    {...field}
+                  />
                 )}
               />
               {errors.confirmPassword && (
-                <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
+                <p className="text-sm text-red-500">
+                  {errors.confirmPassword.message}
+                </p>
               )}
             </div>
 
@@ -187,7 +234,11 @@ export default function SignupPage() {
                 name="gender"
                 control={control}
                 render={({ field }) => (
-                  <select id="gender" className="w-full p-2 border rounded" {...field}>
+                  <select
+                    id="gender"
+                    className="w-full p-2 border rounded"
+                    {...field}
+                  >
                     <option value="0">Male</option>
                     <option value="1">Female</option>
                     <option value="2">Other</option>
@@ -215,12 +266,18 @@ export default function SignupPage() {
                 name="phoneNumber"
                 control={control}
                 render={({ field }) => (
-                  <Input id="phoneNumber" placeholder="123-456-7890" {...field} />
+                  <Input
+                    id="phoneNumber"
+                    placeholder="123-456-7890"
+                    {...field}
+                  />
                 )}
               />
-              {errors.phoneNumber && (
-                <p className="text-sm text-red-500">{errors.phoneNumber.message}</p>
-              )}
+              {/* {errors.phoneNumber && (
+                <p className="text-sm text-red-500">
+                  {errors.phoneNumber.message}
+                </p>
+              )} */}
             </div>
 
             {/* Address */}
@@ -233,7 +290,9 @@ export default function SignupPage() {
                   <Input id="address" placeholder="123 Main St" {...field} />
                 )}
               />
-              {errors.address && <p className="text-sm text-red-500">{errors.address.message}</p>}
+              {errors.address && (
+                <p className="text-sm text-red-500">{errors.address.message}</p>
+              )}
             </div>
 
             <Button className="w-full mt-6" type="submit">

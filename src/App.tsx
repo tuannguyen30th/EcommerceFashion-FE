@@ -1,30 +1,32 @@
 import { Routes, Route } from "react-router-dom";
-import Layout from "@/components/global/root-layout";
-import Home from "@/pages/home";
-import ProductDetail from "@/pages/product-detail";
-import ProductList from "./pages/product-list";
-import CartPage from "./pages/cart";
-import CheckoutPage from "./pages/checkout";
-import WishlistPage from "./pages/wishlist";
-import TrackingPage from "./pages/tracking";
-import ProfilePage from "./pages/profile";
-import ShopPage from "./pages/shop";
-import LoginPage from "./pages/sign-in";
-import SignupPage from "./pages/sign-up";
-import OTPPage from "./pages/otp";
-import { CategoryNavigation } from "./components/local/category-navigation";
-import CategoryPage from "./pages/categories";
-import UrbanStyleBrandPage from "./pages/brand";
-import ComparisonPage from "./components/local/comparison-drawer";
-import RegisterShopPage from "./pages/sign-up-shop-account";
-import OTPPhoneNumberPage from "./pages/otp-phone-number";
-import WebsiteReviewsPage from "./pages/website-review";
-import RootLayout from "@/components/global/root-layout";
+// import Layout from "@/components/global/root-layout";
+// import Home from "@/pages/home";
+// import ProductDetail from "@/pages/product-detail";
+// import ProductList from "./pages/product-list";
+// import CartPage from "./pages/cart";
+// import CheckoutPage from "./pages/checkout";
+// import WishlistPage from "./pages/wishlist";
+// import TrackingPage from "./pages/tracking";
+// import ProfilePage from "./pages/profile";
+// import ShopPage from "./pages/shop";
+// import LoginPage from "./pages/sign-in";
+// import SignupPage from "./pages/sign-up";
+// import OTPPage from "./pages/otp";
+// import { CategoryNavigation } from "./components/local/category-navigation";
+// import CategoryPage from "./pages/categories";
+// import UrbanStyleBrandPage from "./pages/brand";
+// import ComparisonPage from "./components/local/comparison-drawer";
+// import RegisterShopPage from "./pages/sign-up-shop-account";
+// import OTPPhoneNumberPage from "./pages/otp-phone-number";
+// import WebsiteReviewsPage from "./pages/website-review";
+// import RootLayout from "@/components/global/root-layout";
+import { PAGES } from "./utils/pages";
+import React from "react";
 
 function App() {
   return (
     <Routes>
-      <Route element={<RootLayout />}>
+      {/* <Route element={<RootLayout />}>
         <Route path="/" element={<Home />} />
         <Route
           path="/product"
@@ -69,7 +71,17 @@ function App() {
       <Route path="/sign-in" element={<LoginPage />} />
       <Route path="/sign-up" element={<SignupPage />} />
       <Route path="/otp" element={<OTPPage />} />
-      <Route path="/otpPhone" element={<OTPPhoneNumberPage />} />
+      <Route path="/otpPhone" element={<OTPPhoneNumberPage />} /> */}
+      {PAGES.map((page) => {
+        const RootLayout = page.layout;
+        return RootLayout ? (
+          <Route element={<RootLayout />}>
+            <Route path={page.path} element={<page.element />} />
+          </Route>
+        ) : (
+          <Route path={page.path} element={<page.element />} />
+        );
+      })}
     </Routes>
   );
 }

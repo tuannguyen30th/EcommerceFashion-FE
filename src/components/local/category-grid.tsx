@@ -41,7 +41,7 @@ export function CategoryGrid() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10">
           {visibleCategories.map((category, index) => (
             <Link
-              key={index}
+              key={category.id}
               to={"/cate"}
               className="group flex flex-col items-center text-center border border-gray-100 h-[150px]"
             >

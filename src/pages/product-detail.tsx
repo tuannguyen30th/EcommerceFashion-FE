@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Star, Minus, Plus, Check } from "lucide-react";
 import { Button } from "../components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductReviews from "@/components/local/product-reviews";
 import RelatedProducts from "@/components/local/related-products";
 import { Breadcrumb } from "@/components/local/bread-crumb";
@@ -16,7 +15,7 @@ interface Product {
   originalPrice?: number;
   rating: number;
   colors: { id: string; value: string }[];
-  sizes: {id: string; value: string}[];
+  sizes: { id: string; value: string }[];
   images: string[];
   stock: number;
 }
@@ -25,13 +24,11 @@ interface ProductDetailProps {
   product: Product;
 }
 
-const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
+const ProductDetailPage: React.FC<ProductDetailProps> = ({ product }) => {
   const [selectedColor, setSelectedColor] = useState<string>(
     product.colors[0].id
   );
-  const [selectedSize, setSelectedSize] = useState<string>(
-    product.sizes[0].id
-  );
+  const [selectedSize, setSelectedSize] = useState<string>(product.sizes[0].id);
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState<string>(product.images[0]);
 
@@ -83,7 +80,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           <h1 className="text-4xl font-bold">{product.name}</h1>
           <div className="flex items-center">
             <h3 className="text-xl font-bold">Shop:</h3>
-            <Link to={"/shop"} className="ml-3 italic hover:underline"><p className="text-gray-600"> Nhà của mèo </p></Link>
+            <Link to={"/shop"} className="ml-3 italic hover:underline">
+              <p className="text-gray-600"> Nhà của mèo </p>
+            </Link>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -197,7 +196,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
       </div>
 
       <div className="mt-16">
-            <ProductReviews />
+        <ProductReviews />
       </div>
 
       <RelatedProducts />
@@ -205,4 +204,4 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetailPage;

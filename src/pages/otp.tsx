@@ -11,12 +11,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { authService } from "@/utils/auth-service";
+import { ResponseType } from "@/types/response-global";
+import { toast } from "@/hooks/use-toast";
+import { AxiosError } from "axios";
 
 export default function OTPPage() {
-  const [otp, setOtp] = useState(["", "", "", "", ""]);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const inputRefs = [
+    useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
@@ -24,14 +29,18 @@ export default function OTPPage() {
     useRef<HTMLInputElement>(null),
   ];
   const navigate = useNavigate();
+  const { state } = useLocation();
+
+  if (!state) {
+    return window.location.replace("/");
+  }
 
   const handleChange = (index: number, value: string) => {
     if (value.length <= 1) {
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
-
-      if (value !== "" && index < 4) {
+      if (value !== "" && index < 5) {
         inputRefs[index + 1].current?.focus();
       }
     }
@@ -46,16 +55,48 @@ export default function OTPPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const email = state?.data?.email;
     // Handle OTP verification logic here
     console.log("OTP submitted:", otp.join(""));
-    // Redirect to home page after successful verification
-    navigate("/");
+    console.log("Email submitted:", email);
+
+    try {
+      const response = await authService.verifyOtp({
+        email,
+        verificationCode: otp.join(""),
+      });
+
+      const verifiedData = response.data as ResponseType;
+
+      if (response.status === 200 && verifiedData.status) {
+        toast({
+          description: verifiedData.message,
+        });
+        // Redirect to home page after successful verification
+        navigate("/");
+      } else {
+        toast({
+          variant: "destructive",
+          description: verifiedData.message,
+        });
+      }
+    } catch (error) {
+      console.error("Error:::", error);
+      if (error instanceof AxiosError) {
+        toast({
+          variant: "destructive",
+          title: error.name,
+          description: error.response?.data?.message,
+        });
+      }
+    }
   };
 
   useEffect(() => {
     inputRefs[0].current?.focus();
+    console.log("state:::", state);
   }, []);
 
   return (

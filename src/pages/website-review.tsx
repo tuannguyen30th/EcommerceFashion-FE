@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 import { WebsiteReviewList } from '@/components/local/website-review-list'
 import { WebsiteReviewForm } from '@/components/local/website-review-form'
